@@ -19,6 +19,7 @@
   "author": "MEMS D-AMP Team",
   "license": "MIT",
   "dependencies": {
+    "framer-motion": "^12.23.22",
     "fuse.js": "^7.0.0",
     "liquid-glass-react": "^1.1.1",
     "liquid-glass-ui": "^1.0.0",

@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
-import LiquidGlass from 'liquid-glass-react'
+// import LiquidGlass from 'liquid-glass-react'
+import LandingPage from '../components/LandingPage'
 
 
 const Home = () => {
@@ -7,44 +8,7 @@ const Home = () => {
     <>
       {/* Hero Section */}
 
-      <section className="modern-hero-bg py-32 relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-20 left-10 w-72 h-72 bg-primary-blue-400/15 rounded-full blur-3xl floating-animation"></div>
-          <div className="absolute bottom-20 right-10 w-96 h-96 bg-accent-yellow-400/15 rounded-full blur-3xl floating-animation" style={{animationDelay: '2s'}}></div>
-          <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-primary-blue-500/10 to-accent-yellow-400/10 rounded-full blur-3xl floating-animation" style={{animationDelay: '4s'}}></div>
-        </div>
-        
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="text-center">
-            {/* Badge */}
-            
-            
-            <h1 className="text-6xl md:text-8xl font-bold text-white mb-8 animate-slide-up">
-              Welcome to <span className="gradient-text">MEMS D-AMP</span>
-            </h1>
-            
-            <p className="text-xl md:text-2xl text-white/90 mb-12 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.3s'}}>
-              Your comprehensive resource for course reviews, internship experiences, and academic guidance at IIT Bombay's MEMS department.
-            </p>
-            
-            <div className="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in" style={{animationDelay: '0.6s'}}>
-              <Link to="/courses" className="button-primary group inline-flex items-center justify-center">
-                Browse Course Reviews
-                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </Link>
-              <Link to="/experiences" className="button-secondary group inline-flex items-center justify-center">
-                Read Experiences
-                <svg className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
+      <LandingPage />
 
       {/* Featured Section */}
       <section className="py-24 bg-gradient-to-br from-neutral-50 to-primary-blue-50 relative">
