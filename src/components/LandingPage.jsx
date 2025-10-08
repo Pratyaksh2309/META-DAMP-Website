@@ -125,16 +125,16 @@ function LandingPage() {
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-                        className="text-6xl md:text-8xl font-light tracking-tight text-white mb-8"
+                        className="text-5xl md:text-7xl font-light tracking-tight text-white mb-8"
                     >
                         Welcome to <motion.span
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ delay: 0.5, duration: 0.6 }}
-                            className="text-[#ffd900]"
-                        >
+                            className="text-6xl md:text-8xl font-bold tracking-tight text-[#ffd900]"
+                        ><br/>
                             MEMS D-AMP
-                        </motion.span>?
+                        </motion.span>
                     </motion.h1>
 
                     {/* Text Placeholder */}
@@ -149,7 +149,7 @@ function LandingPage() {
                         </p>
 
                         {/* CTA Buttons */}
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <div className="flex flex-col sm:flex-row gap-8 justify-center">
                             <motion.div
                                 initial={{ x: -20, opacity: 0 }}
                                 animate={{ x: 0, opacity: 1 }}
@@ -159,7 +159,7 @@ function LandingPage() {
                             >
                                 <Link
                                     to="/courses"
-                                    className="block px-8 py-4 rounded-full bg-white  text-[#0453f1] font-semibold hover:bg-[#ffb700] hover:text-white transition-all shadow-lg hover:shadow-xl"
+                                    className="block px-10 py-5 rounded-full bg-white text-lg text-[#0453f1] font-semibold hover:bg-[#ffb700] hover:text-white transition-all shadow-lg hover:shadow-xl"
                                 >
                                     Browse Courses
                                 </Link>
@@ -173,7 +173,7 @@ function LandingPage() {
                             >
                                 <Link
                                     to="/experiences"
-                                    className="block px-8 py-4 rounded-full bg-white/10 text-white font-semibold hover:bg-white hover:text-[#0453f1] transition-all border-2 border-white/30 hover:border-white"
+                                    className="block px-10 py-5 rounded-full bg-white/10 text-lg text-white font-semibold hover:bg-white hover:text-[#0453f1] transition-all border-2 border-[#ffb700]/80 hover:border-white"
                                 >
                                     Read Experiences
                                 </Link>

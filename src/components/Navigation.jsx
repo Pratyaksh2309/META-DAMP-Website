@@ -21,9 +21,13 @@ const Navigation = () => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex-shrink-0">
-            <Link to="/" className="flex items-center space-x-4 group">
-              <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-primary-blue-600 to-primary-blue-700 flex items-center justify-center shadow-glow group-hover:scale-105 group-hover:shadow-glow-yellow transition-all duration-300">
-                <img src="/Final DAMP logo (Without text).png" alt="MEMS D-AMP Logo" className="w-7 h-7 object-contain"/>
+            <Link to="/" className="flex items-center space-x-1 group">
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center group-hover:scale-105 transition-all duration-200">
+                <img
+                  src="/Final DAMP logo (Without text).png"
+                  alt="MEMS D-AMP Logo"
+                  className="w-11 h-11 object-contain"
+                />
               </div>
               <span className="text-2xl font-bold gradient-text-blue">MEMS D-AMP</span>
             </Link>
@@ -31,31 +35,41 @@ const Navigation = () => {
 
           {/* Desktop Navigation */}
           <div className="hidden md:block">
-            <div className="flex items-center space-x-1">
-              {navItems.map((item) => (
-                <Link
-                  key={item.path}
-                  to={item.path}
-                  className={`px-5 py-3 rounded-2xl text-sm font-semibold transition-all duration-300 relative overflow-hidden group ${
-                    location.pathname === item.path
-                      ? 'bg-gradient-to-r from-primary-blue-500 to-primary-blue-600 text-white shadow-glow'
-                      : 'text-neutral-700 hover:text-primary-blue-600 hover:bg-primary-blue-50/80'
-                  }`}
-                >
-                  <span className="relative z-10">{item.label}</span>
-                  {location.pathname !== item.path && (
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary-blue-500 to-accent-yellow-400 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-                  )}
-                </Link>
-              ))}
+            <div className="flex items-center space-x-7">
+              {navItems.map((item) => {
+                const isActive = location.pathname === item.path
+                return (
+                  <Link
+                    key={item.path}
+                    to={item.path}
+                    className={`
+                      relative text-md font-semibold
+                      transition-all duration-300 group
+                      ${isActive ? 'text-primary-blue-600' : 'text-neutral-700 hover:text-primary-blue-600'}
+                    `}
+                  >
+                    {item.label}
+
+                    {/* Gradient underline for active link */}
+                    {isActive && (
+                      <span className="absolute left-0 -bottom-1 w-full h-[2px] bg-gradient-to-r from-[#cde4ff] to-[#4da3ff] rounded-full"></span>
+                    )}
+
+                    {/* Hover underline animation */}
+                    {!isActive && (
+                      <span className="absolute left-0 -bottom-1 w-0 h-[2px] bg-gradient-to-r from-[#cde4ff] to-[#4da3ff] rounded-full transition-all duration-300 group-hover:w-full"></span>
+                    )}
+                  </Link>
+                )
+              })}
             </div>
           </div>
 
           {/* Mobile menu button */}
           <div className="md:hidden">
-            <button 
+            <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2 rounded-2xl text-neutral-700 hover:text-primary-blue-600 hover:bg-primary-blue-50 focus:outline-none transition-all duration-300"
+              className="p-2 rounded-2xl text-neutral-700 hover:text-primary-blue-600 focus:outline-none transition-all duration-300"
             >
               <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 {!mobileMenuOpen ? (
@@ -73,21 +87,24 @@ const Navigation = () => {
       {mobileMenuOpen && (
         <div className="md:hidden animate-fade-in">
           <div className="px-6 pt-6 pb-8 space-y-3 glass-nav border-t border-primary-blue-200/50 shadow-2xl">
-            {navItems.map((item, index) => (
-              <Link
-                key={item.path}
-                to={item.path}
-                className={`block px-5 py-4 rounded-2xl text-base font-semibold transition-all duration-300 stagger-animation ${
-                  location.pathname === item.path
-                    ? 'bg-gradient-to-r from-primary-blue-500 to-primary-blue-600 text-white shadow-glow'
-                    : 'text-neutral-700 hover:bg-primary-blue-50 hover:text-primary-blue-600'
-                }`}
-                style={{animationDelay: `${index * 0.1}s`}}
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
+            {navItems.map((item, index) => {
+              const isActive = location.pathname === item.path
+              return (
+                <Link
+                  key={item.path}
+                  to={item.path}
+                  className={`block px-3 py-4 text-base font-semibold relative transition-all duration-300 ${
+                    isActive
+                      ? 'text-primary-blue-600'
+                      : 'text-neutral-700 hover:text-primary-blue-600'
+                  }`}
+                  style={{ animationDelay: `${index * 0.05}s` }}
+                  onClick={() => setMobileMenuOpen(false)}
+                >
+                  {item.label}
+                </Link>
+              )
+            })}
           </div>
         </div>
       )}
