@@ -12,9 +12,9 @@ const Footer = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
           {/* Brand */}
           <div className="space-y-6">
-            <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary-blue-600 to-primary-blue-700 rounded-2xl flex items-center justify-center shadow-glow">
-                <img src="/Final DAMP logo (Without text).png" alt="MEMS D-AMP Logo" className="w-6 h-6 object-contain"/>
+            <div className="flex items-center space-x-2">
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center">
+                <img src="/Final DAMP logo (Without text).png" alt="MEMS D-AMP Logo" className="w-10 h-10 object-contain"/>
               </div>
               <span className="text-2xl font-bold gradient-text-blue">MEMS D-AMP</span>
             </div>
