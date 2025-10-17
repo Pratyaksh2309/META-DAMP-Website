@@ -29,7 +29,7 @@ const Navigation = () => {
                   className="w-11 h-11 object-contain"
                 />
               </div>
-              <span className="text-2xl font-bold gradient-text-blue">MEMS D-AMP</span>
+              <span className="text-2xl font-bold">MEMS D-AMP</span>
             </Link>
           </div>
 
