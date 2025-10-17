@@ -2,16 +2,15 @@ import { Link } from 'react-router-dom'
 
 const Footer = () => {
   return (
-    <footer className="bg-gradient-to-br from-neutral-50 to-primary-blue-50 border-t border-primary-blue-200/30 mt-16 relative overflow-hidden">
+    <footer className="bg-gradient-to-br from-neutral-50 to-primary-blue-50 border-t border-primary-blue-200/30 relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 25% 25%, #3b82f6 0%, transparent 50%), radial-gradient(circle at 75% 75%, #eab308 0%, transparent 50%)'}}></div>
       </div>
       
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 relative">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
-          {/* Brand */}
-          <div className="space-y-6">
+      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 relative flex flex-col md:flex-row md:justify-between">
+        {/* Brand */}
+          <div className="space-y-3 sm:w-[100%] md:w-[40%] mb-10 md:mb-0">
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12 bg-gradient-to-br from-primary-blue-600 to-primary-blue-700 rounded-2xl flex items-center justify-center shadow-glow">
                 <img src="/Final DAMP logo (Without text).png" alt="MEMS D-AMP Logo" className="w-6 h-6 object-contain"/>
@@ -22,45 +21,43 @@ const Footer = () => {
               Supporting MEMS students with course reviews, internship experiences, and academic guidance at IIT Bombay.
             </p>
           </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+          
 
           {/* Quick Links */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-bold text-neutral-900">Quick Links</h3>
             <ul className="space-y-3">
-              <li><Link to="/courses" className="text-neutral-600 hover:text-primary-blue-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">📚 Course Reviews</Link></li>
-              <li><Link to="/experiences" className="text-neutral-600 hover:text-accent-yellow-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">💼 Internship Experiences</Link></li>
-              <li><Link to="/tracks" className="text-neutral-600 hover:text-primary-blue-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">🛤️ Course Tracks</Link></li>
-              <li><Link to="/team" className="text-neutral-600 hover:text-accent-yellow-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">👥 Meet the Team</Link></li>
+              <li><Link to="/courses" className="text-neutral-600 hover:text-primary-blue-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">Course Reviews</Link></li>
+              <li><Link to="/experiences" className="text-neutral-600 hover:text-accent-yellow-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">Experiences</Link></li>
+              <li><Link to="/tracks" className="text-neutral-600 hover:text-primary-blue-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">Course Tracks</Link></li>
+              <li><Link to="/team" className="text-neutral-600 hover:text-accent-yellow-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">Meet the Team</Link></li>
             </ul>
           </div>
 
           {/* Contact */}
-          <div className="space-y-6">
+          <div className="space-y-3">
             <h3 className="text-xl font-bold text-neutral-900">Contact</h3>
             <div className="space-y-4">
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-primary-blue-100 rounded-lg flex items-center justify-center">
-                  <span className="text-lg">📧</span>
-                </div>
+                
                 <span className="text-neutral-600 font-medium">damp.mems@iitb.ac.in</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-accent-yellow-100 rounded-lg flex items-center justify-center">
-                  <span className="text-lg">📍</span>
-                </div>
+                
                 <span className="text-neutral-600 font-medium">IIT Bombay, Mumbai</span>
               </div>
               <div className="flex items-center space-x-3">
-                <div className="w-8 h-8 bg-primary-blue-100 rounded-lg flex items-center justify-center">
-                  <span className="text-lg">🔗</span>
-                </div>
+                
                 <a href="https://mems.iitb.ac.in" className="text-neutral-600 hover:text-primary-blue-600 transition-colors font-medium">MEMS Department</a>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="mt-12 pt-8 border-t border-primary-blue-200/30">
+        
+      </div>
+      <div className="px-10 py-2 border-t border-primary-blue-200/30">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-neutral-600 font-medium">
               © 2024 MEMS D-AMP. Built with <span className="text-red-500 animate-bounce-gentle">❤️</span> for MEMS students.
@@ -81,7 +78,6 @@ const Footer = () => {
             </div>
           </div>
         </div>
-      </div>
     </footer>
   )
 }
