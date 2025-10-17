@@ -52,7 +52,7 @@ const Support = () => {
     <div className="py-16 bg-gray-50 min-h-screen">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-text-primary mb-4">Support</h1>
+          <h1 className="text-6xl md:text-7xl font-bold mb-8 animate-slide-up">Support</h1>
           <p className="text-xl text-text-secondary max-w-3xl mx-auto">
             Get help, ask questions, or provide feedback. We're here to support your academic journey.
           </p>

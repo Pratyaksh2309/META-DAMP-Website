@@ -83,7 +83,7 @@ const Team = () => {
             <div className="w-2 h-2 bg-primary-blue-500 rounded-full mr-2 pulse-glow"></div>
             Our Amazing Team
           </div>
-          <h1 className="text-6xl md:text-7xl font-bold gradient-text-blue mb-8 animate-slide-up">Meet Our Team</h1>
+          <h1 className="text-6xl md:text-7xl font-bold mb-8 animate-slide-up">Meet Our Team</h1>
           <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.3s'}}>
             The dedicated MEMS students and faculty working together to support your academic journey.
           </p>
