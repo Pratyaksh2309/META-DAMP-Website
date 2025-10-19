@@ -11,10 +11,12 @@ import Events from './pages/Events'
 import EventDetail from './pages/EventDetail'
 import Team from './pages/Team'
 import Support from './pages/Support'
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (
     <Router>
+      <ScrollToTop />
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
