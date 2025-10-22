@@ -132,7 +132,7 @@ function LandingPage() {
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ delay: 0.5, duration: 0.6 }}
-                            className="text-6xl md:text-8xl font-bold tracking-tight text-[#ffd900]"
+                            className="text-6xl md:text-8xl font-bold tracking-tight text-[#235EE6]"
                         ><br/>
                             MEMS D-AMP
                         </motion.span>
