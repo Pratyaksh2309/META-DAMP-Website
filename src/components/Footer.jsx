@@ -12,7 +12,7 @@ const Footer = () => {
         {/* Brand */}
           <div className="space-y-3 sm:w-[100%] md:w-[40%] mb-10 md:mb-0">
             <div className="flex items-center space-x-4">
-              <div className="w-12 h-12 bg-gradient-to-br from-primary-blue-600 to-primary-blue-700 rounded-2xl flex items-center justify-center shadow-glow">
+              <div className="w-12 h-12  rounded-2xl flex items-center justify-center shadow-glow">
                 <img src="/Final DAMP logo (Without text).png" alt="MEMS D-AMP Logo" className="w-6 h-6 object-contain"/>
               </div>
               <span className="text-2xl font-bold gradient-text-blue">MEMS D-AMP</span>
@@ -60,7 +60,7 @@ const Footer = () => {
       <div className="px-10 py-2 border-t border-primary-blue-200/30">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-neutral-600 font-medium">
-              © 2024 MEMS D-AMP. Built with <span className="text-red-500 animate-bounce-gentle">❤️</span> for MEMS students.
+              © {new Date().getFullYear()} MEMS D-AMP. Built with <span className="text-red-500 animate-bounce-gentle">❤️</span> for MEMS students.
             </p>
             <div className="flex space-x-4 mt-6 md:mt-0">
               <a href="#" className="w-10 h-10 bg-primary-blue-100 hover:bg-primary-blue-200 rounded-xl flex items-center justify-center text-primary-blue-600 hover:text-primary-blue-700 transition-all duration-300 hover:scale-110">

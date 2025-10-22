@@ -86,10 +86,6 @@ const Team = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center px-4 py-2 bg-primary-blue-100/80 backdrop-blur-sm rounded-full text-sm font-semibold text-primary-blue-700 mb-6 animate-fade-in">
-            <div className="w-2 h-2 bg-primary-blue-500 rounded-full mr-2 pulse-glow"></div>
-            Our Amazing Team
-          </div>
           <h1 className="text-6xl md:text-7xl font-bold gradient-text-blue mb-8 animate-slide-up">Meet Our Team</h1>
           <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.3s'}}>
             The dedicated MEMS students and faculty working together to support your academic journey.
@@ -98,7 +94,7 @@ const Team = () => {
 
         {/* Team Members */}
         <div className="mb-20">
-          <h2 className="text-4xl font-bold gradient-text-blue mb-12 text-center">Student Team</h2>
+          <h2 className="text-4xl font-bold gradient-text-blue mb-12 text-center animate-slide-up">Student Team</h2>
           <div className="team-grid">
             {teamMembers.map((member, index) => (
               <div key={member.id} className="team-card stagger-animation" style={{animationDelay: `${index * 0.1}s`}}>
