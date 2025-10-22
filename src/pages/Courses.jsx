@@ -43,7 +43,7 @@ const Courses = () => {
           </p>
         </div>
 
-        <SearchBar />
+        <SearchBar filter="courses" />
 
         {/* Filters */}
         <div className="flex flex-wrap gap-4 mb-16 justify-center animate-fade-in" style={{animationDelay: '0.6s'}}>

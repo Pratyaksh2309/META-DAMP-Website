@@ -57,7 +57,7 @@ const Experiences = () => {
           </p>
         </div>
 
-        <SearchBar />
+        <SearchBar filter="experiences" />
 
         {/* Main Filters */}
         <div className="flex flex-wrap gap-4 mb-16 justify-center animate-fade-in" style={{animationDelay: '0.6s'}}>
