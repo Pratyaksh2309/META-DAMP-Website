@@ -100,10 +100,10 @@ const TrackDetail = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-primary-blue-50">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-primary-blue-600 to-primary-blue-700 overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-r from-primary-blue-600 to-accent-yellow-500 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-accent-yellow-400/10 rounded-full blur-3xl floating-animation"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-primary-blue-400/10 rounded-full blur-3xl floating-animation" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl floating-animation"></div>
+          <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent-yellow-300/20 rounded-full blur-3xl floating-animation" style={{animationDelay: '2s'}}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -186,7 +186,7 @@ const TrackDetail = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-r from-primary-blue-500 to-primary-blue-600 text-white shadow-glow'
+                    ? 'bg-gradient-to-r from-primary-blue-500 to-accent-yellow-500 text-white shadow-glow'
                     : 'bg-white text-neutral-700 hover:bg-primary-blue-50 hover:text-primary-blue-600 shadow-md'
                 }`}
               >
@@ -217,7 +217,7 @@ const TrackDetail = () => {
                     <div className="space-y-4">
                       <div className="flex items-start">
                         <div className="w-8 h-8 bg-accent-yellow-400 rounded-full flex items-center justify-center mr-4 mt-1">
-                          <span className="text-white text-sm">噫</span>
+                          <span className="text-white text-sm">🚀</span>
                         </div>
                         <div>
                           <h4 className="font-semibold text-neutral-900 mb-2">High Demand</h4>
@@ -226,7 +226,7 @@ const TrackDetail = () => {
                       </div>
                       <div className="flex items-start">
                         <div className="w-8 h-8 bg-accent-yellow-400 rounded-full flex items-center justify-center mr-4 mt-1">
-                          <span className="text-white text-sm">腸</span>
+                          <span className="text-white text-sm">💰</span>
                         </div>
                         <div>
                           <h4 className="font-semibold text-neutral-900 mb-2">Excellent Salary</h4>
@@ -237,7 +237,7 @@ const TrackDetail = () => {
                     <div className="space-y-4">
                       <div className="flex items-start">
                         <div className="w-8 h-8 bg-accent-yellow-400 rounded-full flex items-center justify-center mr-4 mt-1">
-                          <span className="text-white text-sm">溌</span>
+                          <span className="text-white text-sm">🔬</span>
                         </div>
                         <div>
                           <h4 className="font-semibold text-neutral-900 mb-2">Research Opportunities</h4>
@@ -246,7 +246,7 @@ const TrackDetail = () => {
                       </div>
                       <div className="flex items-start">
                         <div className="w-8 h-8 bg-accent-yellow-400 rounded-full flex items-center justify-center mr-4 mt-1">
-                          <span className="text-white text-sm">倹</span>
+                          <span className="text-white text-sm">🌐</span>
                         </div>
                         <div>
                           <h4 className="font-semibold text-neutral-900 mb-2">Versatile Skills</h4>
@@ -299,7 +299,7 @@ const TrackDetail = () => {
 
             {activeTab === 'careers' && (
               <div className="glass-card rounded-3xl p-8 animate-fade-in">
-                <h3 className="text-2xl font-bold text-neutral-900 mb-6">識 Career Opportunities</h3>
+                <h3 className="text-2xl font-bold text-neutral-900 mb-6">🎯 Career Opportunities</h3>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   {track.careerPaths.map((career, index) => (
                     <div key={index} className="flex items-center p-4 bg-gradient-to-r from-primary-blue-50 to-accent-yellow-50 rounded-2xl border border-primary-blue-100">
@@ -336,7 +336,7 @@ const TrackDetail = () => {
 
             {activeTab === 'tips' && (
               <div className="glass-card rounded-3xl p-8 animate-fade-in">
-                <h3 className="text-2xl font-bold text-neutral-900 mb-6">庁 Success Tips from Alumni</h3>
+                <h3 className="text-2xl font-bold text-neutral-900 mb-6">💡 Success Tips from Alumni</h3>
                 <div className="space-y-4">
                   {track.tips.map((tip, index) => (
                     <div key={index} className="flex items-start p-4 bg-accent-yellow-50 rounded-2xl border border-accent-yellow-200">

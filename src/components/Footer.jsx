@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom'
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
   return (
     <footer className="bg-gradient-to-br from-neutral-50 to-primary-blue-50 border-t border-primary-blue-200/30 relative overflow-hidden">
       {/* Background Pattern */}
@@ -12,9 +11,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 relative flex flex-col md:flex-row md:justify-between">
         {/* Brand */}
           <div className="space-y-3 sm:w-[100%] md:w-[40%] mb-10 md:mb-0">
-            <div className="flex items-center space-x-1">
-              <div className="w-12 h-12 flex items-center justify-center">
-                <img src="/Final DAMP logo (Without text).png" alt="MEMS D-AMP Logo" className="w-10 h-10 object-contain"/>
+            <div className="flex items-center space-x-4">
+              <div className="w-12 h-12  rounded-2xl flex items-center justify-center shadow-glow">
+                <img src="/Final DAMP logo (Without text).png" alt="MEMS D-AMP Logo" className="w-6 h-6 object-contain"/>
               </div>
               <span className="text-2xl font-bold gradient-text-blue">MEMS D-AMP</span>
             </div>
@@ -30,9 +29,9 @@ const Footer = () => {
             <h3 className="text-xl font-bold text-neutral-900">Quick Links</h3>
             <ul className="space-y-3">
               <li><Link to="/courses" className="text-neutral-600 hover:text-primary-blue-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">Course Reviews</Link></li>
-              <li><Link to="/experiences" className="text-neutral-600 hover:text-primary-blue-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">Experiences</Link></li>
+              <li><Link to="/experiences" className="text-neutral-600 hover:text-accent-yellow-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">Experiences</Link></li>
               <li><Link to="/tracks" className="text-neutral-600 hover:text-primary-blue-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">Course Tracks</Link></li>
-              <li><Link to="/team" className="text-neutral-600 hover:text-primary-blue-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">Meet the Team</Link></li>
+              <li><Link to="/team" className="text-neutral-600 hover:text-accent-yellow-600 transition-all duration-300 text-base font-medium hover:translate-x-1 inline-block">Meet the Team</Link></li>
             </ul>
           </div>
 
@@ -61,7 +60,7 @@ const Footer = () => {
       <div className="px-10 py-2 border-t border-primary-blue-200/30">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-neutral-600 font-medium">
-               &copy;{currentYear} MEMS D-AMP. Built with <span className="text-red-500 animate-bounce-gentle">❤️</span> for MEMS students.
+              © {new Date().getFullYear()} MEMS D-AMP. Built with <span className="text-red-500 animate-bounce-gentle">❤️</span> for MEMS students.
             </p>
             <div className="flex space-x-4 mt-6 md:mt-0">
               <a href="#" className="w-10 h-10 bg-primary-blue-100 hover:bg-primary-blue-200 rounded-xl flex items-center justify-center text-primary-blue-600 hover:text-primary-blue-700 transition-all duration-300 hover:scale-110">

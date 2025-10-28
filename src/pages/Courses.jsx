@@ -33,17 +33,13 @@ const Courses = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-20">
-          <div className="inline-flex items-center px-4 py-2 bg-blue-100/80 backdrop-blur-sm rounded-full text-sm font-semibold text-blue-700 mb-6 animate-fade-in">
-            <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 pulse-glow"></div>
-            Course Database
-          </div>
           <h1 className="text-6xl md:text-7xl font-bold text-slate-900 mb-8 animate-slide-up">Course Reviews</h1>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.3s'}}>
             Comprehensive reviews of MEMS courses with difficulty ratings, professor insights, and prerequisites from your seniors.
           </p>
         </div>
 
-        <SearchBar />
+        <SearchBar filter="courses" />
 
         {/* Filters */}
         <div className="flex flex-wrap gap-4 mb-16 justify-center animate-fade-in" style={{animationDelay: '0.6s'}}>

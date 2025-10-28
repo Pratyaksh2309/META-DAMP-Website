@@ -1,23 +1,32 @@
 import { useState, useEffect } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Fuse from 'fuse.js'
 
-const SearchBar = () => {
+const SearchBar = ({ filter = 'all' }) => {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
   const [showResults, setShowResults] = useState(false)
   const [fuse, setFuse] = useState(null)
 
+  const navigate = useNavigate()
+
   const searchData = [
-    { title: 'ME 101', category: 'course', type: 'core', difficulty: 'medium' },
-    { title: 'ME 102', category: 'course', type: 'core', difficulty: 'easy' },
-    { title: 'Google Internship', category: 'experience', type: 'internship', domain: 'software' },
-    { title: 'Microsoft Internship', category: 'experience', type: 'internship', domain: 'software' },
-    { title: 'DS Minor Track', category: 'track', type: 'minor' }
+    // Courses from Courses.jsx
+    { id: 1, title: 'ME 101 - Engineering Mechanics', category: 'course', type: 'core', difficulty: 'medium', credits: 3, semester: '1st Year, 1st Sem', url: '/course/1' },
+    { id: 2, title: 'ME 102 - Engineering Graphics', category: 'course', type: 'core', difficulty: 'easy', credits: 3, semester: '1st Year, 1st Sem', url: '/course/2' },
+    { id: 3, title: 'ME 201 - Thermodynamics', category: 'course', type: 'core', difficulty: 'hard', credits: 4, semester: '2nd Year, 1st Sem', url: '/course/3' },
+    { id: 4, title: 'CS 101 - Computer Programming', category: 'course', type: 'elective', difficulty: 'medium', credits: 3, semester: '1st Year, 2nd Sem', url: '/course/4' },
+    
+    // Experiences from Experiences.jsx
+    { id: 1, title: 'Google Software Engineering Intern', category: 'experience', type: 'software', company: 'Google', duration: 'Summer 2024', location: 'Bangalore', cpi: '9.2+', url: '/experience/1' },
+    { id: 2, title: 'Microsoft Research Intern', category: 'experience', type: 'research', company: 'Microsoft', duration: 'Summer 2024', location: 'Hyderabad', cpi: '8.5+', url: '/experience/2' },
+    { id: 3, title: 'MIT Graduate Studies', category: 'experience', type: 'masters', company: 'MIT', duration: 'Fall 2024', location: 'Boston, USA', cpi: '9.5+', url: '/experience/3' },
+    { id: 4, title: 'Robotics Project at IIT Bombay', category: 'experience', type: 'research', company: 'IIT Bombay', duration: 'Spring 2024', location: 'Mumbai', cpi: '8.0+', url: '/experience/4' }
   ]
 
   useEffect(() => {
     const fuseInstance = new Fuse(searchData, {
-      keys: ['title', 'category', 'type', 'domain'],
+      keys: ['title', 'category', 'type', 'company', 'location', 'difficulty', 'semester', 'duration'],
       threshold: 0.3,
       includeScore: true
     })
@@ -35,7 +44,15 @@ const SearchBar = () => {
 
     if (fuse) {
       const searchResults = fuse.search(searchQuery)
-      setResults(searchResults.slice(0, 5))
+      let filteredResults = searchResults
+      
+      if (filter === 'courses') {
+        filteredResults = searchResults.filter(result => result.item.category === 'course')
+      } else if (filter === 'experiences') {
+        filteredResults = searchResults.filter(result => result.item.category === 'experience')
+      }
+      
+      setResults(filteredResults.slice(0, 5))
       setShowResults(true)
     }
   }
@@ -79,6 +96,11 @@ const SearchBar = () => {
               return (
                 <div
                   key={index}
+                  onClick={() => {
+                    navigate(item.url)
+                    setShowResults(false)
+                    setQuery('')
+                  }}
                   className="block p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 cursor-pointer"
                 >
                   <div className="flex items-center justify-between">

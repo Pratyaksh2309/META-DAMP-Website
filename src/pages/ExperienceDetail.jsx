@@ -17,7 +17,7 @@ const ExperienceDetail = () => {
       author: 'Arjun Patel',
       year: '2024',
       rating: 5,
-      salary: '竄ｹ1,20,000/month',
+      salary: '₹1,20,000/month',
       team: 'Google Search',
       description: 'An incredible 10-week journey at Google Bangalore working on search algorithms and machine learning systems. This internship completely transformed my understanding of large-scale software development.',
       applicationProcess: {
@@ -104,10 +104,10 @@ const ExperienceDetail = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-primary-blue-50">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-primary-blue-600 to-primary-blue-700 overflow-hidden">
+      <section className="relative py-20 bg-gradient-to-r from-primary-blue-600 to-accent-yellow-500 overflow-hidden">
         <div className="absolute inset-0">
-          <div className="absolute top-10 left-10 w-64 h-64 bg-accent-yellow-400/10 rounded-full blur-3xl floating-animation"></div>
-          <div className="absolute bottom-10 right-10 w-80 h-80 bg-primary-blue-400/10 rounded-full blur-3xl floating-animation" style={{animationDelay: '2s'}}></div>
+          <div className="absolute top-10 left-10 w-64 h-64 bg-white/10 rounded-full blur-3xl floating-animation"></div>
+          <div className="absolute bottom-10 right-10 w-80 h-80 bg-accent-yellow-300/20 rounded-full blur-3xl floating-animation" style={{animationDelay: '2s'}}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
@@ -131,7 +131,7 @@ const ExperienceDetail = () => {
                 {experience.title}
               </h1>
               <h2 className="text-2xl md:text-3xl text-white/90 mb-6">
-                {experience.company} | {experience.location}
+                {experience.company} • {experience.location}
               </h2>
               
               <p className="text-xl text-white/80 leading-relaxed mb-8">
@@ -203,7 +203,7 @@ const ExperienceDetail = () => {
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 ${
                   activeTab === tab.id
-                    ? 'bg-gradient-to-r from-primary-blue-500 to-primary-blue-600 text-white shadow-glow'
+                    ? 'bg-gradient-to-r from-primary-blue-500 to-accent-yellow-500 text-white shadow-glow'
                     : 'bg-white text-neutral-700 hover:bg-primary-blue-50 hover:text-primary-blue-600 shadow-md'
                 }`}
               >
@@ -325,7 +325,7 @@ const ExperienceDetail = () => {
 
             {activeTab === 'preparation' && (
               <div className="glass-card rounded-3xl p-8 animate-fade-in">
-                <h3 className="text-2xl font-bold text-neutral-900 mb-6">識 How I Prepared</h3>
+                <h3 className="text-2xl font-bold text-neutral-900 mb-6">🎯 How I Prepared</h3>
                 <div className="space-y-4">
                   {experience.preparation.map((step, index) => (
                     <div key={index} className="flex items-start p-4 bg-accent-yellow-50 rounded-2xl border border-accent-yellow-200">
@@ -342,7 +342,7 @@ const ExperienceDetail = () => {
             {activeTab === 'advice' && (
               <div className="space-y-8 animate-fade-in">
                 <div className="glass-card rounded-3xl p-8">
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-6">庁 Tips for Success</h3>
+                  <h3 className="text-2xl font-bold text-neutral-900 mb-6">💡 Tips for Success</h3>
                   <div className="space-y-4">
                     {experience.tips.map((tip, index) => (
                       <div key={index} className="flex items-start p-4 bg-primary-blue-50 rounded-2xl border border-primary-blue-200">
