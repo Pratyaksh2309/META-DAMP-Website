@@ -47,8 +47,8 @@ const Experiences = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-20">
-          <h1 className="text-6xl md:text-7xl font-bold gradient-text-blue mb-8 animate-slide-up">Experiences</h1>
-          <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.3s'}}>
+          <h1 className="text-6xl md:text-7xl text-slate-900 font-bold mb-2 animate-slide-up">Experiences</h1>
+          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.3s'}}>
             Real stories from MEMS students about their internships, higher studies, and project experiences.
           </p>
         </div>
@@ -106,7 +106,7 @@ const Experiences = () => {
         {/* Experience Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {getFilteredExperiences().map((experience, index) => (
-            <div key={experience.id} className="stagger-animation glass-card-blue rounded-3xl shadow-xl card-hover p-10 group relative overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
+            <div key={experience.id} className="stagger-animation bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl card-hover p-10 border border-white/50 group relative overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-blue-500/5 to-accent-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               

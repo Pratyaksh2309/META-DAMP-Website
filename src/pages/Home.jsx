@@ -11,7 +11,7 @@ const Home = () => {
       <LandingPage />
 
       {/* Featured Section */}
-      <section className="py-24 bg-gradient-to-br from-neutral-50 to-primary-blue-50 relative">
+      {/* <section className="py-24 bg-gradient-to-br from-neutral-50 to-primary-blue-50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-20">
             <h2 className="text-5xl md:text-6xl font-bold gradient-text-blue mb-6">Featured Content</h2>
@@ -19,7 +19,7 @@ const Home = () => {
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {/* Featured Course Review */}
+            
             <div className="stagger-animation glass-card-blue rounded-3xl shadow-xl card-hover p-10 group" style={{animationDelay: '0.1s'}}>
               <div className="flex items-center mb-8">
                 <div className="w-16 h-16 bg-gradient-to-br from-primary-blue-500 to-primary-blue-600 rounded-3xl flex items-center justify-center shadow-glow group-hover:scale-110 group-hover:shadow-glow-yellow transition-all duration-300">
@@ -38,7 +38,7 @@ const Home = () => {
               </Link>
             </div>
 
-            {/* Internship Experiences */}
+            
             <div className="stagger-animation glass-card-yellow rounded-3xl shadow-xl card-hover p-10 group" style={{animationDelay: '0.2s'}}>
               <div className="flex items-center mb-8">
                 <div className="w-16 h-16 bg-gradient-to-br from-accent-yellow-500 to-accent-yellow-600 rounded-3xl flex items-center justify-center shadow-glow-yellow group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">
@@ -57,7 +57,7 @@ const Home = () => {
               </Link>
             </div>
 
-            {/* Course Tracks */}
+            
             <div className="stagger-animation glass-card rounded-3xl shadow-xl card-hover p-10 group" style={{animationDelay: '0.3s'}}>
               <div className="flex items-center mb-8">
                 <div className="w-16 h-16 bg-gradient-to-br from-neutral-600 to-neutral-700 rounded-3xl flex items-center justify-center shadow-lg group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">
@@ -77,10 +77,10 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* Quick Access Grid */}
-      <section className="py-24 bg-white relative overflow-hidden">
+      <section className="pt-12 pb-24 bg-white relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 25% 25%, #3b82f6 0%, transparent 50%), radial-gradient(circle at 75% 75%, #8b5cf6 0%, transparent 50%)'}}></div>
