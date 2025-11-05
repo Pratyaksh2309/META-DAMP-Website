@@ -1,14 +1,16 @@
-import { useState, useEffect, useRef } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Fuse from 'fuse.js'
 
-const SearchBar = ({ filter = 'all', onSearchToggle = () => {} }) => {
+const SearchBar = ({ filter = 'all' }) => {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
   const [showResults, setShowResults] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
   const [fuse, setFuse] = useState(null)
   const searchContainerRef = useRef(null)
+
+  const navigate = useNavigate()
 
   const navigate = useNavigate()
 

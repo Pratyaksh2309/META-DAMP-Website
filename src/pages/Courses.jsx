@@ -35,7 +35,7 @@ const Courses = () => {
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-20">
-          <h1 className="text-6xl md:text-7xl font-bold text-slate-900 mb-2 animate-slide-up">Course Reviews</h1>
+          <h1 className="text-6xl md:text-7xl font-bold text-slate-900 mb-8 animate-slide-up">Course Reviews</h1>
           <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.3s'}}>
             Comprehensive reviews of MEMS courses with difficulty ratings, professor insights, and prerequisites from your seniors.
           </p>
