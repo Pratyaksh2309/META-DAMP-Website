@@ -4,6 +4,7 @@ import SearchBar from '../components/SearchBar'
 
 const Experiences = () => {
   const [activeFilter, setActiveFilter] = useState('all')
+  const [showFilters, setShowFilters] = useState(true)
   const [internshipFilter, setInternshipFilter] = useState('all')
 
   const experiences = [
@@ -15,15 +16,15 @@ const Experiences = () => {
 
   const getFilteredExperiences = () => {
     let filtered = experiences
-    
+
     if (activeFilter !== 'all') {
       filtered = filtered.filter(exp => exp.category === activeFilter)
     }
-    
+
     if (activeFilter === 'internship' && internshipFilter !== 'all') {
       filtered = filtered.filter(exp => exp.type === internshipFilter)
     }
-    
+
     return filtered
   }
 
@@ -42,45 +43,48 @@ const Experiences = () => {
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-20 w-72 h-72 bg-primary-blue-400/20 rounded-full blur-3xl floating-animation"></div>
-        <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent-yellow-400/20 rounded-full blur-3xl floating-animation" style={{animationDelay: '3s'}}></div>
+        <div className="absolute bottom-20 right-20 w-96 h-96 bg-accent-yellow-400/20 rounded-full blur-3xl floating-animation" style={{ animationDelay: '3s' }}></div>
       </div>
-      
+
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-20">
           <h1 className="text-6xl md:text-7xl text-slate-900 font-bold mb-2 animate-slide-up">Experiences</h1>
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.3s'}}>
+          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.3s' }}>
             Real stories from MEMS students about their internships, higher studies, and project experiences.
           </p>
         </div>
 
-        <SearchBar filter="experiences" />
+        <div className={`flex flex-row ${showFilters ? 'justify-between' : 'justify-center mb-10'}`}>
 
-        {/* Main Filters */}
-        <div className="flex flex-wrap gap-4 mb-16 justify-center animate-fade-in" style={{animationDelay: '0.6s'}}>
-          {['all', 'internship', 'higher-studies', 'projects'].map((filter, index) => (
-            <button
-              key={filter}
-              onClick={() => {
-                setActiveFilter(filter)
-                setInternshipFilter('all')
-              }}
-              className={`stagger-animation px-8 py-4 rounded-2xl font-bold transition-all duration-500 relative overflow-hidden group ${
-                activeFilter === filter
+          {/* Main Filters */}
+          {showFilters && <div className="flex flex-wrap gap-4 mb-16 justify-center animate-fade-in" style={{ animationDelay: '0.6s' }}>
+            {['all', 'internship', 'higher-studies', 'projects'].map((filter, index) => (
+              <button
+                key={filter}
+                onClick={() => {
+                  setActiveFilter(filter)
+                  setInternshipFilter('all')
+                }}
+                className={`stagger-animation px-8 py-4 rounded-2xl font-bold transition-all duration-500 relative overflow-hidden group ${activeFilter === filter
                   ? 'bg-gradient-to-r from-primary-blue-600 to-primary-blue-700 text-white shadow-xl scale-105'
                   : 'bg-white/80 backdrop-blur-sm text-neutral-700 hover:text-primary-blue-600 shadow-lg hover:shadow-xl hover:-translate-y-1 border border-neutral-200/50'
-              }`}
-              style={{animationDelay: `${index * 0.1}s`}}
-            >
-              <span className="relative z-10">
-                {filter === 'all' ? 'All Experiences' : 
-                 filter === 'higher-studies' ? 'Higher Studies' :
-                 filter.charAt(0).toUpperCase() + filter.slice(1)}
-              </span>
-              {activeFilter !== filter && (
-                <div className="absolute inset-0 bg-gradient-to-r from-primary-blue-500 to-accent-yellow-400 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              )}
-            </button>
-          ))}
+                  }`}
+                style={{ animationDelay: `${index * 0.1}s` }}
+              >
+                <span className="relative z-10">
+                  {filter === 'all' ? 'All Experiences' :
+                    filter === 'higher-studies' ? 'Higher Studies' :
+                      filter.charAt(0).toUpperCase() + filter.slice(1)}
+                </span>
+                {activeFilter !== filter && (
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary-blue-500 to-accent-yellow-400 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                )}
+              </button>
+            ))}
+          </div>
+          }
+
+          <SearchBar filter="experiences" onSearchToggle={setShowFilters} />
         </div>
 
         {/* Internship Sub-filters */}
@@ -90,12 +94,11 @@ const Experiences = () => {
               <button
                 key={filter}
                 onClick={() => setInternshipFilter(filter)}
-                className={`stagger-animation px-6 py-2 rounded-2xl font-semibold transition-all duration-300 ${
-                  internshipFilter === filter
-                    ? 'bg-gradient-to-r from-accent-yellow-500 to-accent-yellow-600 text-white shadow-glow-yellow'
-                    : 'bg-white text-neutral-700 hover:bg-accent-yellow-50 hover:text-accent-yellow-700 shadow-md'
-                }`}
-                style={{animationDelay: `${index * 0.05}s`}}
+                className={`stagger-animation px-6 py-2 rounded-2xl font-semibold transition-all duration-300 ${internshipFilter === filter
+                  ? 'bg-gradient-to-r from-accent-yellow-500 to-accent-yellow-600 text-white shadow-glow-yellow'
+                  : 'bg-white text-neutral-700 hover:bg-accent-yellow-50 hover:text-accent-yellow-700 shadow-md'
+                  }`}
+                style={{ animationDelay: `${index * 0.05}s` }}
               >
                 {filter === 'all' ? 'All Internships' : filter.charAt(0).toUpperCase() + filter.slice(1)}
               </button>
@@ -106,10 +109,10 @@ const Experiences = () => {
         {/* Experience Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {getFilteredExperiences().map((experience, index) => (
-            <div key={experience.id} className="stagger-animation bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl card-hover p-10 border border-white/50 group relative overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
+            <div key={experience.id} className="stagger-animation bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl card-hover p-10 border border-white/50 group relative overflow-hidden" style={{ animationDelay: `${index * 0.1}s` }}>
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-blue-500/5 to-accent-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-              
+
               <div className="relative z-10">
                 <div className="flex items-start justify-between mb-6">
                   <div className="flex-1">
@@ -120,7 +123,7 @@ const Experiences = () => {
                     {experience.type}
                   </span>
                 </div>
-                
+
                 <div className="space-y-4 text-neutral-600 mb-8">
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-primary-blue-500 rounded-full mr-3"></div>

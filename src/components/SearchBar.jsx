@@ -1,16 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Fuse from 'fuse.js'
 
-const SearchBar = ({ filter = 'all' }) => {
+const SearchBar = ({ filter = 'all', onSearchToggle }) => {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
   const [showResults, setShowResults] = useState(false)
   const [isExpanded, setIsExpanded] = useState(false)
   const [fuse, setFuse] = useState(null)
   const searchContainerRef = useRef(null)
-
-  const navigate = useNavigate()
 
   const navigate = useNavigate()
 
@@ -100,7 +98,7 @@ const SearchBar = ({ filter = 'all' }) => {
     >
       <div className={`relative px-8 py-4 rounded-2xl transition-all duration-500 ${
         isExpanded 
-          ? 'bg-white/80 backdrop-blur-sm border border-slate-200/50 shadow-lg' 
+          ? 'bg-white/80 backdrop-blur-sm border border-slate-200/50' 
           : 'bg-white/80 backdrop-blur-sm border border-slate-200/50 hover:shadow-xl'
       }`}>
         {isExpanded ? (
