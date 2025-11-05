@@ -132,7 +132,7 @@ function LandingPage() {
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ delay: 0.5, duration: 0.6 }}
-                            className="text-6xl md:text-8xl font-bold tracking-tight text-[#ffd900]"
+                            className="text-6xl md:text-8xl font-bold tracking-tight text-[#235EE6]"
                         ><br/>
                             MEMS D-AMP
                         </motion.span>
@@ -160,7 +160,7 @@ function LandingPage() {
                             >
                                 <Link
                                     to="/courses"
-                                    className="block px-8 py-4 rounded-full bg-white  text-[#0453f1] font-semibold hover:bg-[#ffb700] hover:text-black transition-all shadow-lg hover:shadow-xl"
+                                    className="block px-8 py-4 rounded-full bg-[#2563EB] text-white font-semibold hover:bg-[#1D4ED8] shadow-lg hover:scale-[0.99] transition-all duration-200"
                                 >
                                     Browse Courses
                                 </Link>
@@ -174,7 +174,7 @@ function LandingPage() {
                             >
                                 <Link
                                     to="/experiences"
-                                    className="block px-8 py-4 rounded-full bg-black/10 text-black font-semibold hover:bg-white hover:text-[#0453f1] transition-all border-2 border-white/30 hover:border-white"
+                                    className="block px-8 py-4 rounded-full bg-[#1F2937] text-white font-semibold hover:bg-[#111827] hover:text-white hover:scale-[0.99] transition-all duration-200 shadow-lg"
                                 >
                                     Read Experiences
                                 </Link>
