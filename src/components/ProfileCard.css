@@ -28,6 +28,14 @@
   --card-radius: 30px;
 }
 
+/* Container for card + info below */
+.pc-card-container {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+}
+
 .pc-card-wrapper {
   perspective: 500px;
   transform: translate3d(0, 0, 0.1px);
@@ -278,20 +286,17 @@
 }
 
 .pc-user-info {
-  position: absolute;
-  bottom: 20px;
-  left: 20px;
-  right: 20px;
-  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(255, 255, 255, 0.1);
-  backdrop-filter: blur(30px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  padding: 10px 12px;
   pointer-events: auto;
+  width: 100%;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .pc-user-details {
@@ -304,8 +309,9 @@
 .pc-contact-info {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 5px;
   flex: 1;
+  min-width: 0;
 }
 
 .pc-contact-item {
@@ -316,28 +322,35 @@
 }
 
 .pc-contact-text {
-  font-size: 11px;
-  color: rgba(255, 255, 255, 0.8);
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.85);
   font-weight: 500;
   word-break: break-word;
   overflow-wrap: break-word;
   max-width: 100%;
+  line-height: 1.4;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
 }
 
 .pc-mini-avatar {
   width: 48px;
   height: 48px;
-  border-radius: 50%;
+  border-radius: 8px;
   overflow: hidden;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgba(255, 255, 255, 0.15);
   flex-shrink: 0;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 .pc-mini-avatar img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 50%;
 }
 
 .pc-user-text {
@@ -379,14 +392,11 @@
   transition: all 0.2s ease;
 }
 
+/* Content container - now flexbox for sectioning */
 .pc-content {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  padding: 15px;
   height: 100%;
-  text-align: center;
-  gap: 2px;
   position: relative;
   z-index: 6;
   transform: translate3d(
@@ -394,173 +404,67 @@
     calc(var(--pointer-from-top) * -6px + 3px),
     0.1px
   ) !important;
-  mix-blend-mode: luminosity;
-}
-
-.pc-name-section h3 {
-  font-size: 18px !important;
-  color: rgba(255, 255, 255, 1) !important;
-  background: none !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 1) !important;
-  margin: 0 !important;
-  font-weight: 700 !important;
-  white-space: normal !important;
-  width: auto !important;
-  top: 0 !important;
-}
-
-.pc-year-section .pc-year {
-  font-size: 12px !important;
-  color: rgba(255, 255, 255, 0.8) !important;
-  background: none !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.8) !important;
-  top: 0 !important;
-  font-weight: 500 !important;
-  margin: 0 !important;
-  white-space: normal !important;
-  width: auto !important;
-}
-
-.pc-role-section .pc-role {
-  font-size: 14px !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  background: none !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
-  top: 0 !important;
-  margin: 0 !important;
-  font-weight: 600 !important;
-  white-space: normal !important;
-  width: auto !important;
-}
-
-.pc-image-section {
-  margin: 8px 0;
-}
-
-.pc-avatar-content {
-  mix-blend-mode: screen;
+  padding: 0;
+  gap: 0;
   overflow: hidden;
 }
 
-.pc-avatar-content .avatar {
-  width: 100%;
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) scale(1);
-  bottom: 2px;
-  opacity: calc(1.75 - var(--pointer-from-center));
-}
-
-.pc-avatar-content::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  backdrop-filter: blur(30px);
-  mask: linear-gradient(
-    to bottom,
-    rgba(0, 0, 0, 0) 0%,
-    rgba(0, 0, 0, 0) 60%,
-    rgba(0, 0, 0, 1) 90%,
-    rgba(0, 0, 0, 1) 100%
-  );
-  pointer-events: none;
-}
-
-.pc-main-avatar {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-}
-
-.pc-connect-section {
-  margin-top: auto;
-}
-
-.pc-details {
-  width: 100%;
-  position: absolute;
-  top: 1em;
-  display: flex;
-  flex-direction: column;
-  padding: 0 20px;
-  text-align: center;
-  gap: 0.8em;
-}
-
-.pc-header {
-  margin-bottom: 0.5em;
-}
-
-.pc-year {
-  font-size: 12px !important;
-  color: rgba(255, 255, 255, 0.8) !important;
-  background: none !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.8) !important;
-  top: -5px !important;
-  font-weight: 500 !important;
-}
-
-.pc-role {
-  font-size: 14px !important;
-  color: rgba(255, 255, 255, 0.9) !important;
-  background: none !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.9) !important;
-  top: 0 !important;
-  margin: 0 !important;
-  font-weight: 600 !important;
-}
-
-.pc-career-section {
-  margin-top: 0;
-}
-
-.pc-career-label {
-  font-size: 10px !important;
-  color: rgba(255, 255, 255, 0.6) !important;
-  background: none !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.6) !important;
-  top: 0 !important;
-  margin-bottom: 0.3em !important;
-  font-weight: 500 !important;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.pc-details h3 {
-  font-weight: 600;
-  margin: 0;
-  font-size: min(4svh, 1.8em);
-  margin: 0;
-  background-image: linear-gradient(to bottom, #fff, #6f6fbe);
-  background-size: 1em 1.5em;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
-}
-
-.pc-details p {
-  font-weight: 600;
+/* Image Section - now takes full card */
+.pc-image-section {
+  flex: 1;
   position: relative;
-  top: -8px;
-  white-space: nowrap;
-  font-size: 14px;
-  margin: 0 auto;
-  width: min-content;
-  background-image: linear-gradient(to bottom, #fff, #4a4ac0);
-  background-size: 1em 1.5em;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  -webkit-background-clip: text;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+  background: rgba(0, 0, 0, 0.1);
 }
 
-.pc-career {
-  font-size: 12px !important;
-  top: -8px !important;
-  color: rgba(255, 255, 255, 0.8) !important;
-  background: none !important;
-  -webkit-text-fill-color: rgba(255, 255, 255, 0.8) !important;
+.pc-main-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  opacity: calc(1.5 - var(--pointer-from-center) * 0.4);
+  transition: opacity 0.3s ease;
 }
+
+/* Contact Section */
+.pc-contact-section {
+  padding: 12px 15px 15px 15px;
+  z-index: 5;
+  flex-shrink: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.2));
+  backdrop-filter: blur(10px);
+}
+
+/* Info below card - NEW */
+.pc-info-below {
+  text-align: center;
+  padding: 0 8px;
+}
+
+.pc-name {
+  font-size: 18px;
+  font-weight: 700;
+  color: #1e293b;
+  margin: 0 0 6px 0;
+  line-height: 1.3;
+  letter-spacing: 0.3px;
+}
+
+.pc-career-text {
+  font-size: 13px;
+  font-weight: 500;
+  color: #64748b;
+  margin: 0;
+  line-height: 1.4;
+}
+
+/* Old section styles removed - using info below card now */
+
+/* Old details styles removed - using new section-based layout */
 
 .pc-contact {
   font-size: 10px !important;
@@ -634,45 +538,33 @@
     max-height: 450px;
   }
 
-  .pc-details {
-    top: 2em;
+  .pc-name {
+    font-size: 17px;
   }
 
-  .pc-details h3 {
-    font-size: min(4svh, 2.5em);
+  .pc-career-text {
+    font-size: 12px;
   }
 
-  .pc-details p {
-    font-size: 14px;
+  .pc-contact-section {
+    padding: 10px 12px 12px 12px;
   }
 
   .pc-user-info {
-    bottom: 15px;
-    left: 15px;
-    right: 15px;
-    padding: 10px 12px;
+    padding: 9px 11px;
   }
 
   .pc-mini-avatar {
-    width: 28px;
-    height: 28px;
+    width: 44px;
+    height: 44px;
   }
 
   .pc-user-details {
     gap: 10px;
   }
 
-  .pc-handle {
-    font-size: 13px;
-  }
-
-  .pc-status {
+  .pc-contact-text {
     font-size: 10px;
-  }
-
-  .pc-contact-btn {
-    padding: 6px 12px;
-    font-size: 11px;
   }
 }
 
@@ -682,48 +574,34 @@
     max-height: 380px;
   }
 
-  .pc-details {
-    top: 1.5em;
+  .pc-name {
+    font-size: 16px;
   }
 
-  .pc-details h3 {
-    font-size: min(3.5svh, 2em);
+  .pc-career-text {
+    font-size: 11.5px;
   }
 
-  .pc-details p {
-    font-size: 12px;
-    top: -8px;
+  .pc-contact-section {
+    padding: 8px 10px 10px 10px;
   }
 
   .pc-user-info {
-    bottom: 12px;
-    left: 12px;
-    right: 12px;
     padding: 8px 10px;
-    border-radius: 50px;
+    border-radius: 8px;
   }
 
   .pc-mini-avatar {
-    width: 24px;
-    height: 24px;
+    width: 40px;
+    height: 40px;
   }
 
   .pc-user-details {
-    gap: 8px;
+    gap: 9px;
   }
 
-  .pc-handle {
-    font-size: 12px;
-  }
-
-  .pc-status {
-    font-size: 9px;
-  }
-
-  .pc-contact-btn {
-    padding: 5px 10px;
-    font-size: 10px;
-    border-radius: 50px;
+  .pc-contact-text {
+    font-size: 9.5px;
   }
 }
 
@@ -733,39 +611,34 @@
     max-height: 320px;
   }
 
-  .pc-details h3 {
-    font-size: min(3svh, 1.5em);
+  .pc-name {
+    font-size: 15px;
   }
 
-  .pc-details p {
+  .pc-career-text {
     font-size: 11px;
+  }
+
+  .pc-contact-section {
+    padding: 7px 8px 8px 8px;
   }
 
   .pc-user-info {
-    padding: 6px 8px;
-    border-radius: 50px;
+    padding: 7px 8px;
+    border-radius: 7px;
   }
 
   .pc-mini-avatar {
-    width: 20px;
-    height: 20px;
+    width: 36px;
+    height: 36px;
+    border-radius: 6px;
   }
 
   .pc-user-details {
-    gap: 6px;
+    gap: 8px;
   }
 
-  .pc-handle {
-    font-size: 11px;
-  }
-
-  .pc-status {
-    font-size: 8px;
-  }
-
-  .pc-contact-btn {
-    padding: 4px 8px;
+  .pc-contact-text {
     font-size: 9px;
-    border-radius: 50px;
   }
 }

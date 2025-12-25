@@ -253,79 +253,75 @@ const ProfileCardComponent = ({
   }, [onContactClick]);
 
   return (
-    <div ref={wrapRef} className={`pc-card-wrapper ${className}`.trim()} style={cardStyle}>
-      <section ref={cardRef} className="pc-card">
-        <div className="pc-inside">
-          <div className="pc-shine" />
-          <div className="pc-glare" />
-          <div className="pc-content pc-avatar-content">
-            <div className="pc-name-section">
-              <h3>{name}</h3>
-            </div>
-            
-            {/* 2. Year */}
-            <div className="pc-year-section">
-              <p className="pc-year">{handle}</p>
-            </div>
-            
-            {/* 3. Role */}
-            <div className="pc-role-section">
-              <p className="pc-role">{title}</p>
-            </div>
-            
-            {/* 4. Career Interests */}
-            {careerInterests && (
-              <div className="pc-career-section">
-                {/* <p className="pc-career-label">Career Interests</p> */}
-                <p className="pc-career">{careerInterests}</p>
+    <div className={`pc-card-container ${className}`.trim()}>
+      <div ref={wrapRef} className="pc-card-wrapper" style={cardStyle}>
+        <section ref={cardRef} className="pc-card">
+          <div className="pc-inside">
+            <div className="pc-shine" />
+            <div className="pc-glare" />
+            <div className="pc-content">
+              {/* Full Image Section */}
+              <div className="pc-image-section">
+                <img
+                  className="pc-main-image"
+                  src={avatarUrl}
+                  alt={`${name || 'User'} avatar`}
+                  loading="lazy"
+                  onError={e => {
+                    const target = e.target;
+                    target.style.display = 'none';
+                  }}
+                />
               </div>
-            )}
-            <img
-              className="avatar"
-              src={avatarUrl}
-              alt={`${name || 'User'} avatar`}
-              loading="lazy"
-              onError={e => {
-                const target = e.target;
-                target.style.display = 'none';
-              }}
-            />
-            {showUserInfo && (
-              <div className="pc-user-info">
-                <div className="pc-user-details">
-                  <div className="pc-mini-avatar">
-                    <img
-                      src={miniAvatarUrl || avatarUrl}
-                      alt={`${name || 'User'} mini avatar`}
-                      loading="lazy"
-                      onError={e => {
-                        const target = e.target;
-                        target.style.opacity = '0.5';
-                        target.src = avatarUrl;
-                      }}
-                    />
-                  </div>
-                  
-                  <div className="pc-contact-info">
-                    <div className="pc-contact-item">
-                      <span className="pc-contact-text">{email}</span>
-                    </div>
-                    <div className="pc-contact-item">
-                      <span className="pc-contact-text">{phone}</span>
+
+              {/* Contact Details Section */}
+              {showUserInfo && (
+                <div className="pc-contact-section">
+                  <div className="pc-user-info">
+                    <div className="pc-user-details">
+                      <div className="pc-mini-avatar">
+                        <img
+                          src={miniAvatarUrl || avatarUrl}
+                          alt={`${name || 'User'} mini avatar`}
+                          loading="lazy"
+                          onError={e => {
+                            const target = e.target;
+                            target.style.opacity = '0.5';
+                            target.src = avatarUrl;
+                          }}
+                        />
+                      </div>
+                      
+                      <div className="pc-contact-info">
+                        <div className="pc-contact-item">
+                          <span className="pc-contact-text">{email}</span>
+                        </div>
+                        <div className="pc-contact-item">
+                          <span className="pc-contact-text">{phone}</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            )}
-            
-            {bio && (
-              <div className="pc-bio-overlay">
-                <p>{bio}</p>
-              </div>
-            )}
+              )}
+              
+              {bio && (
+                <div className="pc-bio-overlay">
+                  <p>{bio}</p>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
+      </div>
+
+      {/* Name and Career Interests below the card */}
+      <div className="pc-info-below">
+        <h3 className="pc-name">{name}</h3>
+        {careerInterests && (
+          <p className="pc-career-text">{careerInterests}</p>
+        )}
+      </div>
     </div>
   );
 };
