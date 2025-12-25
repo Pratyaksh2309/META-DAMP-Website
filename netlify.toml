@@ -74,5 +74,5 @@
       '/404',
       '/admin/*'
     ]
-    pretty = true
+    prettyURLs = true
     trailingSlash = false
