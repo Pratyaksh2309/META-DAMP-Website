@@ -1,0 +1,78 @@
+# Netlify Configuration File
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "18"
+
+# Production context
+[context.production]
+  command = "npm run build"
+
+# Deploy Preview context
+[context.deploy-preview]
+  command = "npm run build"
+
+# Branch Deploy context
+[context.branch-deploy]
+  command = "npm run build"
+
+# Headers for SEO and security
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    X-XSS-Protection = "1; mode=block"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+# Cache static assets
+[[headers]]
+  for = "/assets/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/Images/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# Cache HTML with revalidation
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+# Preload important resources
+[[headers]]
+  for = "/index.html"
+  [headers.values]
+    Link = "</assets/index.css>; rel=preload; as=style, </assets/index.js>; rel=preload; as=script"
+
+# Redirect rules (keeping your existing redirect)
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# 404 handling
+[[redirects]]
+  from = "/404"
+  to = "/index.html"
+  status = 404
+
+# Plugin configuration for SEO
+[[plugins]]
+  package = "@netlify/plugin-sitemap"
+  
+  [plugins.inputs]
+    buildDir = "dist"
+    exclude = [
+      '/404',
+      '/admin/*'
+    ]
+    pretty = true
+    trailingSlash = false

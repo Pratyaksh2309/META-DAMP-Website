@@ -6,7 +6,7 @@ const SEO = ({
   description = 'Your comprehensive guide to MEMS courses, internship experiences, and academic pathways at IIT Bombay.',
   keywords = 'MEMS, IIT Bombay, Course Reviews, Internship Experiences, Academic Guide',
   image = '/og-image.png',
-  url = 'https://memsdamp.iitb.ac.in',
+  url = 'https://mems-damp.netlify.app',
   type = 'website'
 }) => {
   const fullTitle = title === 'MEMS D-AMP' ? title : `${title} | MEMS D-AMP`

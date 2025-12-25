@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useState } from 'react'
+import SEO from '../components/SEO'
 
 const ExperienceDetail = () => {
   const { experienceId } = useParams()
@@ -103,6 +104,11 @@ const ExperienceDetail = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-primary-blue-50">
+      <SEO 
+        title={`${experience.title} - ${experience.company}`}
+        description={`Read about ${experience.title} experience at ${experience.company}. Learn about the selection process, work culture, interview tips, and advice for MEMS students.`}
+        keywords={`${experience.company}, internship, ${experience.type}, student experience, IIT Bombay`}
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-r from-primary-blue-600 to-accent-yellow-500 overflow-hidden">
         <div className="absolute inset-0">

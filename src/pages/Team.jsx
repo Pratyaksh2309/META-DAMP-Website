@@ -1,11 +1,17 @@
 import ProfileCard from "../components/ProfileCard"
 import "./Team.css"
 import { dampCoordinators, dampMentors } from "../data/team"
+import SEO from '../components/SEO'
 
 const Team = () => {
 
   return (
     <div className="py-16 sm:py-24 bg-gradient-to-br from-neutral-50 to-primary-blue-50 min-h-screen relative overflow-hidden">
+      <SEO 
+        title="MEMS D-AMP Team"
+        description="Meet the MEMS D-AMP team - coordinators and mentors dedicated to guiding MEMS students at IIT Bombay. Connect with seniors for academic and career guidance."
+        keywords="MEMS team, D-AMP coordinators, student mentors, IIT Bombay MEMS, academic mentors"
+      />
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-20 w-72 h-72 bg-primary-blue-400/20 rounded-full blur-3xl floating-animation"></div>

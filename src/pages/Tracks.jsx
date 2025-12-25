@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
+import SEO from '../components/SEO'
 
 const Tracks = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
@@ -45,6 +46,11 @@ const Tracks = () => {
 
   return (
     <div className="py-16 sm:py-24 bg-gradient-to-br from-neutral-50 to-primary-blue-50 min-h-screen relative overflow-hidden">
+      <SEO 
+        title="Academic Tracks & Pathways"
+        description="Explore curated academic tracks for MEMS students including minors, dual degrees, and specializations. Get course recommendations and semester-wise planning guides."
+        keywords="MEMS tracks, academic pathways, minor programs, dual degree, specializations, course planning, MEMS roadmap"
+      />
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-20 w-72 h-72 bg-primary-blue-400/20 rounded-full blur-3xl floating-animation"></div>

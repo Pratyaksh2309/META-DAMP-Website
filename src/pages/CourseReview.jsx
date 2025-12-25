@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useState } from 'react'
+import SEO from '../components/SEO'
 
 const CourseReview = () => {
   const { courseId } = useParams()
@@ -89,6 +90,11 @@ const CourseReview = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-primary-blue-50">
+      <SEO 
+        title={`${course.code} - ${course.name}`}
+        description={`Detailed review of ${course.code} ${course.name} at IIT Bombay MEMS. Learn about course content, difficulty, professor, workload, and tips from students.`}
+        keywords={`${course.code}, ${course.name}, course review, MEMS course, IIT Bombay`}
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-r from-primary-blue-600 to-primary-blue-700 overflow-hidden">
         <div className="absolute inset-0">

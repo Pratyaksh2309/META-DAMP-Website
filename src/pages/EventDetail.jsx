@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useState } from 'react'
+import SEO from '../components/SEO'
 
 const EventDetail = () => {
   const { eventId } = useParams()
@@ -125,6 +126,11 @@ const EventDetail = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-primary-blue-50">
+      <SEO 
+        title={`${event.title} - MEMS Event`}
+        description={`${event.description} Location: ${event.location}. Date: ${event.date}`}
+        keywords={`${event.title}, MEMS event, IIT Bombay, ${event.type}`}
+      />
       {/* Hero Banner */}
       <section className="relative py-16 bg-gradient-to-r from-neutral-900 via-primary-blue-900 to-accent-yellow-800 overflow-hidden">
         <div className="absolute inset-0">

@@ -1,5 +1,6 @@
 import { useParams, Link } from 'react-router-dom'
 import { useState } from 'react'
+import SEO from '../components/SEO'
 
 const TrackDetail = () => {
   const { trackId } = useParams()
@@ -99,6 +100,11 @@ const TrackDetail = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-primary-blue-50">
+      <SEO 
+        title={`${track.title} - Academic Track`}
+        description={`Complete guide to ${track.title} for MEMS students. ${track.description} Includes course list, prerequisites, and semester planning.`}
+        keywords={`${track.title}, MEMS track, academic pathway, course planning, IIT Bombay`}
+      />
       {/* Hero Section */}
       <section className="relative py-20 bg-gradient-to-r from-primary-blue-600 to-accent-yellow-500 overflow-hidden">
         <div className="absolute inset-0">

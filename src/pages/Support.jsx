@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import SEO from '../components/SEO'
 
 const Support = () => {
   const [activeTab, setActiveTab] = useState('faq')
@@ -50,6 +51,11 @@ const Support = () => {
 
   return (
     <div className="py-16 bg-gray-50 min-h-screen">
+      <SEO 
+        title="Support & FAQs"
+        description="Find answers to frequently asked questions about MEMS D-AMP. Get help with navigation, content contribution, and contact information for additional support."
+        keywords="MEMS support, FAQ, help, contact, student support, D-AMP help"
+      />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
           <h1 className="text-4xl font-bold text-text-primary mb-4">Support</h1>

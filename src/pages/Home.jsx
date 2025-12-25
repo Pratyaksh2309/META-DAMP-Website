@@ -1,11 +1,17 @@
 import { Link } from 'react-router-dom'
 // import LiquidGlass from 'liquid-glass-react'
 import LandingPage from '../components/LandingPage'
+import SEO from '../components/SEO'
 
 
 const Home = () => {
   return (
     <>
+      <SEO 
+        title="MEMS D-AMP"
+        description="Your comprehensive guide to MEMS courses, internship experiences, and academic pathways at IIT Bombay. Discover insights from seniors and plan your academic journey."
+        keywords="MEMS, IIT Bombay, Course Reviews, Internship Experiences, Academic Guide, Mechanical Engineering, MEMS Students"
+      />
       {/* Hero Section */}
 
       <LandingPage />

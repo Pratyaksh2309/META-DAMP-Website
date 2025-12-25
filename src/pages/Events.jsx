@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import SEO from '../components/SEO'
 
 const Events = () => {
   const events = [
@@ -60,6 +61,11 @@ const Events = () => {
 
   return (
     <div className="py-24 bg-gradient-to-br from-neutral-50 to-primary-blue-50 min-h-screen relative overflow-hidden">
+      <SEO 
+        title="MEMS Events & Workshops"
+        description="Stay updated with MEMS department events, workshops, seminars, and networking sessions at IIT Bombay. Find event details, registration info, and past event highlights."
+        keywords="MEMS events, IIT Bombay events, workshops, seminars, orientation, networking, department activities"
+      />
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-20 w-72 h-72 bg-primary-blue-400/20 rounded-full blur-3xl floating-animation"></div>

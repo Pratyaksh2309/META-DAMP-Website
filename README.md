@@ -10,6 +10,7 @@ A modern, comprehensive blog platform for MEMS students at IIT Bombay, featuring
 - **⚡ Fast Navigation**: Single Page Application with React Router
 - **🎯 Comprehensive Content**: Course reviews, internship experiences, academic tracks
 - **🌟 Interactive Elements**: Hover effects, animations, and smooth transitions
+- **🔎 SEO Optimized**: Full SEO implementation with sitemap, robots.txt, and structured data
 
 ## 🛠️ Tech Stack
 
@@ -98,21 +99,47 @@ The project features a custom design system with:
 
 ## 🚀 Deployment
 
-### Vercel (Recommended)
+### Netlify (Recommended)
+This project is fully configured for Netlify deployment with SEO optimization.
+
+**Configuration:**
+- Build command: `npm run build`
+- Publish directory: `dist`
+- `netlify.toml` included with optimized settings
+- Automatic sitemap generation via @netlify/plugin-sitemap
+- Security headers and caching configured
+
+**Deploy Steps:**
+1. Push to GitHub
+2. Connect repository to Netlify
+3. Netlify auto-detects configuration from `netlify.toml`
+4. After deployment, submit sitemap to search engines (see SEO-GUIDE.md)
+
+### Vercel
 ```bash
 # Push to GitHub and connect to Vercel
 # Vercel auto-detects Vite configuration
 ```
-
-### Netlify
-- **Build command**: `npm run build`
-- **Publish directory**: `dist`
 
 ### Manual Build
 ```bash
 npm run build
 # Outputs to dist/ directory
 ```
+
+## 🔎 SEO Features
+
+This project includes comprehensive SEO optimization:
+
+- ✅ **netlify.toml** - Netlify configuration with security headers and caching
+- ✅ **robots.txt** - Search engine crawler directives
+- ✅ **sitemap.xml** - Automatic sitemap generation
+- ✅ **Structured Data** - Schema.org JSON-LD for better search engine understanding
+- ✅ **Meta Tags** - Complete Open Graph and Twitter Card meta tags
+- ✅ **Canonical URLs** - Proper canonical URL management
+- ✅ **Performance** - Optimized for Core Web Vitals
+
+📖 **See [SEO-GUIDE.md](SEO-GUIDE.md) for detailed SEO implementation and post-deployment tasks.**
 
 ## 📝 Content Management
 

@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SearchBar from '../components/SearchBar'
+import SEO from '../components/SEO'
 
 const Courses = () => {
   const [activeFilter, setActiveFilter] = useState('all')
@@ -27,6 +28,11 @@ const Courses = () => {
 
   return (
     <div className="py-16 sm:py-24 bg-gradient-to-br from-neutral-50 to-primary-blue-50 min-h-screen relative overflow-hidden">
+      <SEO 
+        title="Course Reviews"
+        description="Browse comprehensive MEMS course reviews from IIT Bombay students. Find detailed insights on difficulty, workload, prerequisites, and professor ratings to plan your semester."
+        keywords="MEMS courses, IIT Bombay courses, course reviews, MEMS syllabus, mechanical engineering courses, course difficulty"
+      />
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-20 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl floating-animation"></div>

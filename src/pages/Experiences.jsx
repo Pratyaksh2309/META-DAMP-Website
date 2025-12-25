@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SearchBar from '../components/SearchBar'
+import SEO from '../components/SEO'
 
 const Experiences = () => {
   const [activeFilter, setActiveFilter] = useState('all')
@@ -40,6 +41,11 @@ const Experiences = () => {
 
   return (
     <div className="py-16 sm:py-24 bg-gradient-to-br from-neutral-50 to-primary-blue-50 min-h-screen relative overflow-hidden">
+      <SEO 
+        title="Internship & Higher Studies Experiences"
+        description="Read firsthand experiences from MEMS students about their internships, research opportunities, and higher studies. Get insights on company culture, selection process, and tips for success."
+        keywords="MEMS internships, IIT Bombay internships, student experiences, research internships, higher studies, graduate school, company reviews"
+      />
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-20 w-72 h-72 bg-primary-blue-400/20 rounded-full blur-3xl floating-animation"></div>
