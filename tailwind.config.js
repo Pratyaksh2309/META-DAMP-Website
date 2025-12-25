@@ -112,6 +112,7 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       fontFamily: {
+        'poppins': ["Poppins", "sans-serif"],
         'heading': ['Outfit', 'sans-serif'],
         'body': ['Poppins', 'sans-serif'],
         'inter': ['Inter', 'sans-serif'],

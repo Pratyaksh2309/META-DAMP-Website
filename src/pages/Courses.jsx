@@ -4,6 +4,8 @@ import SearchBar from '../components/SearchBar'
 
 const Courses = () => {
   const [activeFilter, setActiveFilter] = useState('all')
+  const [isSearchExpanded, setIsSearchExpanded] = useState(false)
+
 
   const courses = [
     { id: 1, code: 'ME 101', name: 'Engineering Mechanics', category: 'core', difficulty: 'medium', credits: 3, semester: '1st Year, 1st Sem' },
@@ -39,27 +41,31 @@ const Courses = () => {
           </p>
         </div>
 
-        <SearchBar filter="courses" />
-
-        {/* Filters */}
-        <div className="flex flex-wrap gap-4 mb-16 justify-center animate-fade-in" style={{animationDelay: '0.6s'}}>
-          {['all', 'core', 'elective', 'minor'].map((filter, index) => (
-            <button
-              key={filter}
-              onClick={() => setActiveFilter(filter)}
-              className={`stagger-animation px-8 py-4 rounded-2xl font-bold transition-all duration-500 relative overflow-hidden group ${
-                activeFilter === filter
-                  ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-xl scale-105'
-                  : 'bg-white/80 backdrop-blur-sm text-slate-700 hover:text-blue-600 shadow-lg hover:shadow-xl hover:-translate-y-1 border border-slate-200/50'
-              }`}
-              style={{animationDelay: `${index * 0.1}s`}}
-            >
-              <span className="relative z-10">{filter.charAt(0).toUpperCase() + filter.slice(1)} Courses</span>
-              {activeFilter !== filter && (
-                <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
-              )}
-            </button>
-          ))}
+        <div className="flex flex-col items-center justify-center gap-6 mb-16 relative z-50">
+          <SearchBar filter="courses" onSearchToggle={setIsSearchExpanded} />
+          
+          {/* Filters */}
+          {!isSearchExpanded && (
+            <div className="flex flex-wrap gap-4 justify-center animate-fade-in transition-all duration-300" style={{animationDelay: '0.6s'}}>
+              {['all', 'core', 'elective', 'minor'].map((filter, index) => (
+                <button
+                  key={filter}
+                  onClick={() => setActiveFilter(filter)}
+                  className={`stagger-animation px-8 py-4 rounded-2xl font-bold transition-all duration-500 relative overflow-hidden group ${
+                    activeFilter === filter
+                      ? 'bg-gradient-to-r from-blue-600 to-blue-700 text-white shadow-xl scale-105'
+                      : 'bg-white/80 backdrop-blur-sm text-slate-700 hover:text-blue-600 shadow-lg hover:shadow-xl hover:-translate-y-1 border border-slate-200/50'
+                  }`}
+                  style={{animationDelay: `${index * 0.1}s`}}
+                >
+                  <span className="relative z-10">{filter.charAt(0).toUpperCase() + filter.slice(1)} Courses</span>
+                  {activeFilter !== filter && (
+                    <div className="absolute inset-0 bg-gradient-to-r from-blue-500 to-blue-600 opacity-0 group-hover:opacity-10 transition-opacity duration-300"></div>
+                  )}
+                </button>
+              ))}
+            </div>
+          )}
         </div>
 
         {/* Course Grid */}

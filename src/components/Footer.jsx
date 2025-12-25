@@ -57,9 +57,9 @@ const Footer = () => {
 
         
       </div>
-      <div className="px-10 py-2 border-t border-primary-blue-200/30">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-neutral-600 font-medium">
+      <div className="px-5 py-2 border-t border-primary-blue-200/30">
+          <div className="flex flex-col justify-center items-center md:gap-2">
+            <p className="text-neutral-600 font-medium md:text-base text-sm">
               © {new Date().getFullYear()} MEMS D-AMP. Built with <span className="text-red-500 animate-bounce-gentle">❤️</span> for MEMS students.
             </p>
             <div className="flex space-x-4 mt-6 md:mt-0">

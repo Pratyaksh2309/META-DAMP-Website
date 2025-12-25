@@ -3,6 +3,7 @@ import { HelmetProvider } from 'react-helmet-async'
 import { ToastProvider } from './contexts/ToastContext'
 import ErrorBoundary from './components/ErrorBoundary'
 import BackToTop from './components/BackToTop'
+import ScrollToTop from './components/ScrollToTop'
 import Layout from './components/Layout'
 import Home from './pages/Home'
 import Courses from './pages/Courses'
@@ -23,6 +24,7 @@ function App() {
       <ErrorBoundary>
         <ToastProvider>
           <Router>
+            <ScrollToTop />
             {/* Skip to main content link for accessibility */}
             <a href="#main-content" className="skip-link">
               Skip to main content

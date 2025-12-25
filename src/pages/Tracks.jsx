@@ -1,6 +1,9 @@
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 
 const Tracks = () => {
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+
   const tracks = [
     {
       id: 1,
@@ -56,10 +59,61 @@ const Tracks = () => {
           </p>
         </div>
 
+        {/* Additional Info Section - Dropdown */}
+        <div className="mt-16 glass-card rounded-3xl shadow-xl overflow-hidden mb-16">
+          {/* Dropdown Header */}
+          <button
+            onClick={() => setIsDropdownOpen(!isDropdownOpen)}
+            className="w-full flex items-center justify-between p-8 bg-white/50 backdrop-blur-sm rounded-3xl shadow-xl border border-white/50 group relative overflow-hidden">
+            <h2 className="text-3xl font-bold text-slate-900">How to Use Course Tracks</h2>
+            <svg
+              className={`w-8 h-8 text-slate-600 transition-transform duration-300 flex-shrink-0 ${
+                isDropdownOpen ? 'rotate-180' : ''
+              }`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 14l-7 7m0 0l-7-7m7 7V3" />
+            </svg>
+          </button>
+
+          {/* Dropdown Content with smooth height transition */}
+          <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
+            isDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}>
+            <div className="p-12 bg-white/50">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div className="text-center stagger-animation" style={{animationDelay: '0.1s'}}>
+                  <div className="w-16 h-16 bg-gradient-to-r from-primary-blue-500 to-primary-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow">
+                    <span className="text-white font-bold text-xl">1</span>
+                  </div>
+                  <h3 className="font-bold text-neutral-900 mb-3 text-lg">Choose Your Track</h3>
+                  <p className="text-neutral-600">Select a track that aligns with your career goals and interests.</p>
+                </div>
+                <div className="text-center stagger-animation" style={{animationDelay: '0.2s'}}>
+                  <div className="w-16 h-16 bg-gradient-to-r from-accent-yellow-500 to-accent-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow-yellow">
+                    <span className="text-white font-bold text-xl">2</span>
+                  </div>
+                  <h3 className="font-bold text-neutral-900 mb-3 text-lg">Plan Your Semesters</h3>
+                  <p className="text-neutral-600">Use the course sequence to plan your academic timeline.</p>
+                </div>
+                <div className="text-center stagger-animation" style={{animationDelay: '0.3s'}}>
+                  <div className="w-16 h-16 bg-gradient-to-r from-neutral-600 to-neutral-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
+                    <span className="text-white font-bold text-xl">3</span>
+                  </div>
+                  <h3 className="font-bold text-neutral-900 mb-3 text-lg">Get Guidance</h3>
+                  <p className="text-neutral-600">Consult with seniors and faculty for personalized advice.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
         {/* Track Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
           {tracks.map((track, index) => (
-            <div key={track.id} className="stagger-animation glass-card-blue rounded-3xl shadow-xl card-hover p-10 group relative overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
+            <div key={track.id} className="stagger-animation bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl card-hover p-10 border border-white/50 group relative overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-blue-500/5 to-accent-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
               
@@ -119,34 +173,6 @@ const Tracks = () => {
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Additional Info Section */}
-        <div className="mt-16 glass-card rounded-3xl shadow-xl p-12">
-          <h2 className="text-3xl font-bold gradient-text-blue mb-8 text-center">How to Use Course Tracks</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="text-center stagger-animation" style={{animationDelay: '0.1s'}}>
-              <div className="w-16 h-16 bg-gradient-to-r from-primary-blue-500 to-primary-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow">
-                <span className="text-white font-bold text-xl">1</span>
-              </div>
-              <h3 className="font-bold text-neutral-900 mb-3 text-lg">Choose Your Track</h3>
-              <p className="text-neutral-600">Select a track that aligns with your career goals and interests.</p>
-            </div>
-            <div className="text-center stagger-animation" style={{animationDelay: '0.2s'}}>
-              <div className="w-16 h-16 bg-gradient-to-r from-accent-yellow-500 to-accent-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow-yellow">
-                <span className="text-white font-bold text-xl">2</span>
-              </div>
-              <h3 className="font-bold text-neutral-900 mb-3 text-lg">Plan Your Semesters</h3>
-              <p className="text-neutral-600">Use the course sequence to plan your academic timeline.</p>
-            </div>
-            <div className="text-center stagger-animation" style={{animationDelay: '0.3s'}}>
-              <div className="w-16 h-16 bg-gradient-to-r from-neutral-600 to-neutral-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                <span className="text-white font-bold text-xl">3</span>
-              </div>
-              <h3 className="font-bold text-neutral-900 mb-3 text-lg">Get Guidance</h3>
-              <p className="text-neutral-600">Consult with seniors and faculty for personalized advice.</p>
-            </div>
-          </div>
         </div>
       </div>
     </div>

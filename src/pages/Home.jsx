@@ -77,7 +77,7 @@ const Home = () => {
             </div>
           </div>
         </div>
-      </section>
+      </section> 
 
       {/* Quick Access Grid */}
       {/* <section className="py-24 bg-white relative overflow-hidden">
