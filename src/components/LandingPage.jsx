@@ -121,18 +121,18 @@ function LandingPage() {
                 </motion.div>
 
                 {/* Hero Content */}
-                <div className="max-w-4xl mx-auto text-center">
+                <div className="max-w-4xl mx-auto text-center px-4">
                     <motion.h1
                         initial={{ y: 30, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
-                        className="text-6xl md:text-8xl font-light tracking-tight text-black mb-8"
+                        className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-light tracking-tight text-black mb-6 sm:mb-8"
                     >
                         Welcome to <motion.span
                             initial={{ scale: 0.8, opacity: 0 }}
                             animate={{ scale: 1, opacity: 1 }}
                             transition={{ delay: 0.5, duration: 0.6 }}
-                            className="text-6xl md:text-8xl font-bold tracking-tight text-[#235EE6]"
+                            className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold tracking-tight text-[#235EE6]"
                         ><br/>
                             MEMS D-AMP
                         </motion.span>
@@ -143,9 +143,9 @@ function LandingPage() {
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.6, duration: 0.8 }}
-                        className="max-w-2xl mx-auto"
+                        className="max-w-2xl mx-auto px-4"
                     >
-                        <p className="text-xl md:text-2xl text-black/90 leading-relaxed mb-12">
+                        <p className="text-lg sm:text-xl md:text-2xl text-black/90 leading-relaxed mb-8 sm:mb-12">
                             Your comprehensive guide to MEMS courses, internship experiences, and academic pathways at IIT Bombay. Discover insights from seniors and plan your academic journey.
                         </p>
 

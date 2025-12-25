@@ -311,12 +311,17 @@
 .pc-contact-item {
   display: flex;
   align-items: center;
+  min-width: 0;
+  overflow: hidden;
 }
 
 .pc-contact-text {
   font-size: 11px;
   color: rgba(255, 255, 255, 0.8);
   font-weight: 500;
+  word-break: break-word;
+  overflow-wrap: break-word;
+  max-width: 100%;
 }
 
 .pc-mini-avatar {

@@ -24,7 +24,7 @@ const Courses = () => {
   }
 
   return (
-    <div className="py-24 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 min-h-screen relative overflow-hidden">
+    <div className="py-16 sm:py-24 bg-gradient-to-br from-neutral-50 to-primary-blue-50 min-h-screen relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-20 w-72 h-72 bg-blue-400/20 rounded-full blur-3xl floating-animation"></div>
@@ -32,9 +32,9 @@ const Courses = () => {
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center mb-20">
-          <h1 className="text-6xl md:text-7xl font-bold text-slate-900 mb-8 animate-slide-up">Course Reviews</h1>
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.3s'}}>
+        <div className="text-center mb-12 sm:mb-20">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold gradient-text-blue mb-6 sm:mb-8 animate-slide-up">Course Reviews</h1>
+          <p className="text-lg sm:text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed animate-fade-in px-4" style={{animationDelay: '0.3s'}}>
             Comprehensive reviews of MEMS courses with difficulty ratings, professor insights, and prerequisites from your seniors.
           </p>
         </div>

@@ -1,8 +1,11 @@
 import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import PropTypes from 'prop-types'
 import Fuse from 'fuse.js'
+import { coursesData } from '../data/courses'
+import { experiencesData } from '../data/experiences'
 
-const SearchBar = ({ filter = 'all' }) => {
+const SearchBar = ({ filter = 'all', onSearch }) => {
   const [query, setQuery] = useState('')
   const [results, setResults] = useState([])
   const [showResults, setShowResults] = useState(false)
@@ -10,25 +13,27 @@ const SearchBar = ({ filter = 'all' }) => {
 
   const navigate = useNavigate()
 
+  // Prepare search data
   const searchData = [
-    // Courses from Courses.jsx
-    { id: 1, title: 'ME 101 - Engineering Mechanics', category: 'course', type: 'core', difficulty: 'medium', credits: 3, semester: '1st Year, 1st Sem', url: '/course/1' },
-    { id: 2, title: 'ME 102 - Engineering Graphics', category: 'course', type: 'core', difficulty: 'easy', credits: 3, semester: '1st Year, 1st Sem', url: '/course/2' },
-    { id: 3, title: 'ME 201 - Thermodynamics', category: 'course', type: 'core', difficulty: 'hard', credits: 4, semester: '2nd Year, 1st Sem', url: '/course/3' },
-    { id: 4, title: 'CS 101 - Computer Programming', category: 'course', type: 'elective', difficulty: 'medium', credits: 3, semester: '1st Year, 2nd Sem', url: '/course/4' },
-    
-    // Experiences from Experiences.jsx
-    { id: 1, title: 'Google Software Engineering Intern', category: 'experience', type: 'software', company: 'Google', duration: 'Summer 2024', location: 'Bangalore', cpi: '9.2+', url: '/experience/1' },
-    { id: 2, title: 'Microsoft Research Intern', category: 'experience', type: 'research', company: 'Microsoft', duration: 'Summer 2024', location: 'Hyderabad', cpi: '8.5+', url: '/experience/2' },
-    { id: 3, title: 'MIT Graduate Studies', category: 'experience', type: 'masters', company: 'MIT', duration: 'Fall 2024', location: 'Boston, USA', cpi: '9.5+', url: '/experience/3' },
-    { id: 4, title: 'Robotics Project at IIT Bombay', category: 'experience', type: 'research', company: 'IIT Bombay', duration: 'Spring 2024', location: 'Mumbai', cpi: '8.0+', url: '/experience/4' }
+    ...coursesData.map(course => ({
+      ...course,
+      title: `${course.code} - ${course.name}`,
+      category: 'course',
+      url: `/course/${course.id}`
+    })),
+    ...experiencesData.map(exp => ({
+      ...exp,
+      category: 'experience',
+      url: `/experience/${exp.id}`
+    }))
   ]
 
   useEffect(() => {
     const fuseInstance = new Fuse(searchData, {
-      keys: ['title', 'category', 'type', 'company', 'location', 'difficulty', 'semester', 'duration'],
+      keys: ['title', 'name', 'code', 'company', 'type', 'tags', 'skills', 'description'],
       threshold: 0.3,
-      includeScore: true
+      includeScore: true,
+      minMatchCharLength: 2
     })
     setFuse(fuseInstance)
   }, [])
@@ -37,8 +42,14 @@ const SearchBar = ({ filter = 'all' }) => {
     const searchQuery = e.target.value
     setQuery(searchQuery)
 
+    // If external search handler provided, call it
+    if (onSearch) {
+      onSearch(searchQuery)
+    }
+
     if (searchQuery.length < 2) {
       setShowResults(false)
+      setResults([])
       return
     }
 
@@ -46,6 +57,7 @@ const SearchBar = ({ filter = 'all' }) => {
       const searchResults = fuse.search(searchQuery)
       let filteredResults = searchResults
       
+      // Apply filter if specified
       if (filter === 'courses') {
         filteredResults = searchResults.filter(result => result.item.category === 'course')
       } else if (filter === 'experiences') {
@@ -57,67 +69,100 @@ const SearchBar = ({ filter = 'all' }) => {
     }
   }
 
-  const getBadgeClass = (type) => {
-    switch (type) {
-      case 'core': return 'badge badge-core'
-      case 'elective': return 'badge badge-elective'
-      case 'minor': return 'badge badge-minor'
-      default: return 'badge'
+  const getBadgeClass = (category) => {
+    switch (category) {
+      case 'course': return 'bg-primary-blue-100 text-primary-blue-700'
+      case 'experience': return 'bg-accent-yellow-100 text-accent-yellow-700'
+      default: return 'bg-neutral-100 text-neutral-700'
     }
   }
 
   return (
-    <div className="relative max-w-md mx-auto mb-8">
+    <div className="relative max-w-2xl mx-auto mb-8 sm:mb-12">
       <div className="relative">
         <input
           type="text"
-          placeholder="Search courses, experiences, tracks..."
+          placeholder={filter === 'courses' ? 'Search courses by name, code, or topic...' : filter === 'experiences' ? 'Search experiences by company, type, or skills...' : 'Search courses, experiences...'}
           value={query}
           onChange={handleSearch}
           onBlur={() => setTimeout(() => setShowResults(false), 200)}
           onFocus={() => query.length >= 2 && setShowResults(true)}
-          className="w-full px-4 py-3 pl-10 pr-4 text-gray-900 bg-white border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-accent focus:border-transparent"
+          className="w-full px-4 sm:px-6 py-3 sm:py-4 pl-12 sm:pl-14 pr-4 text-neutral-900 bg-white/80 backdrop-blur-sm border-2 border-primary-blue-200 rounded-2xl focus:outline-none focus:ring-2 focus:ring-primary-blue-500 focus:border-primary-blue-500 transition-all shadow-lg hover:shadow-xl"
+          aria-label="Search"
+          role="searchbox"
         />
-        <div className="absolute inset-y-0 left-0 flex items-center pl-3">
-          <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div className="absolute inset-y-0 left-0 flex items-center pl-4 sm:pl-5">
+          <svg className="w-5 h-5 sm:w-6 sm:h-6 text-primary-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
           </svg>
         </div>
       </div>
 
-      {/* Search Results */}
-      {showResults && (
-        <div className="absolute z-10 w-full mt-1 bg-white border border-gray-200 rounded-lg shadow-lg">
-          {results.length === 0 ? (
-            <p className="p-4 text-gray-500">No results found</p>
-          ) : (
-            results.map((result, index) => {
-              const item = result.item
-              return (
-                <div
-                  key={index}
-                  onClick={() => {
+      {/* Search Results Dropdown */}
+      {showResults && results.length > 0 && (
+        <div 
+          className="absolute z-50 w-full mt-2 bg-white/95 backdrop-blur-xl border-2 border-primary-blue-200 rounded-2xl shadow-2xl overflow-hidden"
+          role="listbox"
+          aria-label="Search results"
+        >
+          {results.map((result, index) => {
+            const item = result.item
+            return (
+              <div
+                key={index}
+                onClick={() => {
+                  navigate(item.url)
+                  setShowResults(false)
+                  setQuery('')
+                }}
+                className="p-4 hover:bg-primary-blue-50 cursor-pointer transition-colors border-b border-neutral-100 last:border-b-0"
+                role="option"
+                aria-selected="false"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter') {
                     navigate(item.url)
                     setShowResults(false)
                     setQuery('')
-                  }}
-                  className="block p-3 hover:bg-gray-50 border-b border-gray-100 last:border-b-0 cursor-pointer"
-                >
-                  <div className="flex items-center justify-between">
-                    <div>
-                      <h4 className="font-medium text-gray-900">{item.title}</h4>
-                      <p className="text-sm text-gray-500">{item.category} • {item.type}</p>
-                    </div>
-                    <span className={getBadgeClass(item.type)}>{item.type}</span>
+                  }
+                }}
+              >
+                <div className="flex items-start justify-between">
+                  <div className="flex-1">
+                    <h4 className="font-bold text-neutral-900 mb-1">{item.title}</h4>
+                    {item.description && (
+                      <p className="text-sm text-neutral-600 line-clamp-2">{item.description}</p>
+                    )}
+                    {item.company && (
+                      <p className="text-sm text-neutral-600 mt-1">{item.company} • {item.location}</p>
+                    )}
                   </div>
+                  <span className={`px-3 py-1 text-xs font-bold rounded-full ml-3 flex-shrink-0 ${getBadgeClass(item.category)}`}>
+                    {item.category}
+                  </span>
                 </div>
-              )
-            })
-          )}
+              </div>
+            )
+          })}
+        </div>
+      )}
+      
+      {showResults && results.length === 0 && query.length >= 2 && (
+        <div className="absolute z-50 w-full mt-2 bg-white/95 backdrop-blur-xl border-2 border-primary-blue-200 rounded-2xl shadow-2xl p-6 text-center">
+          <svg className="w-12 h-12 mx-auto mb-3 text-neutral-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+          </svg>
+          <p className="text-neutral-600 font-medium">No results found for "{query}"</p>
+          <p className="text-sm text-neutral-500 mt-1">Try different keywords or browse all content</p>
         </div>
       )}
     </div>
   )
+}
+
+SearchBar.propTypes = {
+  filter: PropTypes.oneOf(['all', 'courses', 'experiences']),
+  onSearch: PropTypes.func
 }
 
 export default SearchBar

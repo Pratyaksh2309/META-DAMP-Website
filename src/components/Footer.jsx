@@ -8,9 +8,9 @@ const Footer = () => {
         <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 25% 25%, #3b82f6 0%, transparent 50%), radial-gradient(circle at 75% 75%, #eab308 0%, transparent 50%)'}}></div>
       </div>
       
-      <div className="max-w-7xl mx-auto py-16 px-4 sm:px-6 lg:px-8 relative flex flex-col md:flex-row md:justify-between">
+      <div className="max-w-7xl mx-auto py-12 sm:py-16 px-4 sm:px-6 lg:px-8 relative flex flex-col lg:flex-row lg:justify-between">
         {/* Brand */}
-          <div className="space-y-3 sm:w-[100%] md:w-[40%] mb-10 md:mb-0">
+          <div className="space-y-3 w-full lg:w-[40%] mb-10 lg:mb-0">
             <div className="flex items-center space-x-4">
               <div className="w-12 h-12  rounded-2xl flex items-center justify-center shadow-glow">
                 <img src="/Final DAMP logo (Without text).png" alt="MEMS D-AMP Logo" className="w-6 h-6 object-contain"/>
@@ -21,7 +21,7 @@ const Footer = () => {
               Supporting MEMS students with course reviews, internship experiences, and academic guidance at IIT Bombay.
             </p>
           </div>
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 lg:gap-12">
           
 
           {/* Quick Links */}

@@ -34,8 +34,8 @@ const Navigation = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:block">
-            <div className="flex items-center space-x-7">
+          <div className="hidden lg:block">
+            <div className="flex items-center space-x-4 xl:space-x-7">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.path
                 return (
@@ -66,7 +66,7 @@ const Navigation = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="md:hidden">
+          <div className="lg:hidden">
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               className="p-2 rounded-2xl text-neutral-700 hover:text-primary-blue-600 focus:outline-none transition-all duration-300"
@@ -85,7 +85,7 @@ const Navigation = () => {
 
       {/* Mobile Navigation */}
       {mobileMenuOpen && (
-        <div className="md:hidden animate-fade-in">
+        <div className="lg:hidden animate-fade-in">
           <div className="px-6 pt-6 pb-8 space-y-3 glass-nav border-t border-primary-blue-200/50 shadow-2xl">
             {navItems.map((item, index) => {
               const isActive = location.pathname === item.path

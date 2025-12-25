@@ -1,83 +1,11 @@
 import ProfileCard from "../components/ProfileCard"
 import "./Team.css"
+import { dampCoordinators, dampMentors } from "../data/team"
 
 const Team = () => {
-  const teamMembers = [
-    {
-      id: 1,
-      name: 'Arjun Sharma',
-      role: 'Team Lead',
-      year: '4th Year',
-      email: 'arjun.sharma@iitb.ac.in',
-      phone: '+91 98765 43210',
-      linkedin: '#',
-      image: '/Images/lf2397zx.png',
-      bio: 'Leading D-AMP initiative for MEMS student success.',
-      careerInterests: 'Product Management, Consulting'
-    },
-    {
-      id: 2,
-      name: 'Priya Patel',
-      role: 'Content Manager',
-      year: '3rd Year',
-      email: 'priya.patel@iitb.ac.in',
-      phone: '+91 98765 43211',
-      linkedin: '#',
-      image: '/api/placeholder/150/150',
-      bio: 'Managing content and helping students make informed decisions.',
-      careerInterests: 'Content Strategy, EdTech'
-    },
-    {
-      id: 3,
-      name: 'Rahul Kumar',
-      role: 'Technical Lead',
-      year: '4th Year',
-      email: 'rahul.kumar@iitb.ac.in',
-      phone: '+91 98765 43212',
-      linkedin: '#',
-      image: '/api/placeholder/150/150',
-      bio: 'Building technical solutions for seamless user experiences.',
-      careerInterests: 'Software Engineering, AI/ML'
-    },
-    {
-      id: 4,
-      name: 'Sneha Gupta',
-      role: 'Outreach Coordinator',
-      year: '2nd Year',
-      email: 'sneha.gupta@iitb.ac.in',
-      phone: '+91 98765 43213',
-      linkedin: '#',
-      image: '/api/placeholder/150/150',
-      bio: 'Connecting students with opportunities and organizing events.',
-      careerInterests: 'Marketing, Event Management'
-    }
-  ]
-
-  const mentors = [
-    {
-      id: 1,
-      name: 'Prof. Rajesh Khanna',
-      role: 'Faculty Mentor',
-      department: 'MEMS Department',
-      email: 'rkhanna@iitb.ac.in',
-      phone: '+91 22 2576 7001',
-      image: '/api/placeholder/150/150',
-      bio: 'Guiding the D-AMP initiative with 15+ years of experience in mechanical engineering education and research.'
-    },
-    {
-      id: 2,
-      name: 'Dr. Sunita Verma',
-      role: 'Academic Advisor',
-      department: 'MEMS Department',
-      email: 'sverma@iitb.ac.in',
-      phone: '+91 22 2576 7002',
-      image: '/api/placeholder/150/150',
-      bio: 'Supporting student academic growth with expertise in curriculum development and career guidance.'
-    }
-  ]
 
   return (
-    <div className="py-24 bg-gradient-to-br from-neutral-50 to-primary-blue-50 min-h-screen relative overflow-hidden">
+    <div className="py-16 sm:py-24 bg-gradient-to-br from-neutral-50 to-primary-blue-50 min-h-screen relative overflow-hidden">
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-30">
         <div className="absolute top-20 left-20 w-72 h-72 bg-primary-blue-400/20 rounded-full blur-3xl floating-animation"></div>
@@ -85,66 +13,35 @@ const Team = () => {
       </div>
       
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-        <div className="text-center mb-20">
-          <h1 className="text-6xl md:text-7xl font-bold gradient-text-blue mb-8 animate-slide-up">Meet Our Team</h1>
-          <p className="text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{animationDelay: '0.3s'}}>
-            The dedicated MEMS students and faculty working together to support your academic journey.
+        <div className="text-center mb-12 sm:mb-20">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold gradient-text-blue mb-6 sm:mb-8 animate-slide-up">Meet Our Team</h1>
+          <p className="text-lg sm:text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed animate-fade-in px-4" style={{animationDelay: '0.3s'}}>
+            The dedicated MEMS students working together to support your academic journey.
           </p>
         </div>
 
-        {/* Team Members */}
+        {/* DAMP Coordinators */}
         <div className="mb-20">
-          <h2 className="text-4xl font-bold gradient-text-blue mb-12 text-center animate-slide-up">Student Team</h2>
+          <h2 className="text-4xl font-bold gradient-text-blue mb-12 text-center animate-slide-up">DAMP Coordinators</h2>
           <div className="team-grid">
-            {teamMembers.map((member, index) => (
-              <div key={member.id} className="team-card stagger-animation" style={{animationDelay: `${index * 0.1}s`}}>
+            {dampCoordinators.map((coordinator, index) => (
+              <div key={coordinator.id} className="team-card stagger-animation" style={{animationDelay: `${index * 0.1}s`}}>
                 <ProfileCard
-                  name={member.name}
-                  title={member.role}
-                  handle={member.year}
+                  name={coordinator.name}
+                  title="DAMP Coordinator"
+                  handle={coordinator.year}
                   status=""
                   contactText="Contact"
-                  avatarUrl={member.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(member.name)}&background=3b82f6&color=fff&size=300`}
+                  avatarUrl={coordinator.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(coordinator.name)}&background=3b82f6&color=fff&size=300`}
                   showUserInfo={true}
                   enableTilt={true}
                   enableMobileTilt={false}
-                  bio={member.bio}
-                  careerInterests={member.careerInterests}
-                  email={member.email}
-                  phone={member.phone}
+                  bio={coordinator.bio}
+                  careerInterests={coordinator.careerInterests}
+                  email={coordinator.email}
+                  phone={coordinator.phone}
                   onContactClick={() => {
-                    const contactInfo = `📧 ${member.email}\n📱 ${member.phone}\n💼 LinkedIn: Coming Soon`;
-                    alert(contactInfo);
-                  }}
-                />
-              </div>
-            ))
-          }
-          </div>
-        </div>
-
-        {/* Faculty Mentors */}
-        <div className="mb-20">
-          <h2 className="text-4xl font-bold gradient-text-blue mb-12 text-center">Faculty Mentors</h2>
-          <div className="team-grid">
-            {mentors.map((mentor, index) => (
-              <div key={mentor.id} className="team-card stagger-animation" style={{animationDelay: `${index * 0.2}s`}}>
-                <ProfileCard
-                  name={mentor.name}
-                  title={mentor.role}
-                  handle={mentor.department}
-                  status=""
-                  contactText="Contact"
-                  avatarUrl={mentor.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(mentor.name)}&background=64748b&color=fff&size=300`}
-                  showUserInfo={true}
-                  enableTilt={true}
-                  enableMobileTilt={false}
-                  bio={mentor.bio}
-                  careerInterests=""
-                  email={mentor.email}
-                  phone={mentor.phone}
-                  onContactClick={() => {
-                    const contactInfo = `📧 ${mentor.email}\n📱 ${mentor.phone}`;
+                    const contactInfo = `📧 ${coordinator.email}\n📱 ${coordinator.phone}`;
                     alert(contactInfo);
                   }}
                 />
@@ -153,10 +50,106 @@ const Team = () => {
           </div>
         </div>
 
+        {/* 5th Year DAMP Mentors */}
+        {dampMentors.fifthYear.length > 0 && (
+          <div className="mb-20">
+            <h2 className="text-4xl font-bold gradient-text-blue mb-12 text-center">DAMP Mentors - 5th Year</h2>
+            <div className="team-grid">
+              {dampMentors.fifthYear.map((mentor, index) => (
+                <div key={mentor.id} className="team-card stagger-animation" style={{animationDelay: `${index * 0.1}s`}}>
+                  <ProfileCard
+                    name={mentor.name}
+                    title="DAMP Mentor"
+                    handle={mentor.year}
+                    status=""
+                    contactText="Contact"
+                    avatarUrl={mentor.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(mentor.name)}&background=3b82f6&color=fff&size=300`}
+                    showUserInfo={true}
+                    enableTilt={true}
+                    enableMobileTilt={false}
+                    bio={mentor.bio}
+                    careerInterests={mentor.careerInterests}
+                    email={mentor.email}
+                    phone={mentor.phone}
+                    onContactClick={() => {
+                      const contactInfo = `📧 ${mentor.email}\n📱 ${mentor.phone}`;
+                      alert(contactInfo);
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 4th Year DAMP Mentors */}
+        {dampMentors.fourthYear.length > 0 && (
+          <div className="mb-20">
+            <h2 className="text-4xl font-bold gradient-text-blue mb-12 text-center">DAMP Mentors - 4th Year</h2>
+            <div className="team-grid">
+              {dampMentors.fourthYear.map((mentor, index) => (
+                <div key={mentor.id} className="team-card stagger-animation" style={{animationDelay: `${index * 0.1}s`}}>
+                  <ProfileCard
+                    name={mentor.name}
+                    title="DAMP Mentor"
+                    handle={mentor.year}
+                    status=""
+                    contactText="Contact"
+                    avatarUrl={mentor.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(mentor.name)}&background=3b82f6&color=fff&size=300`}
+                    showUserInfo={true}
+                    enableTilt={true}
+                    enableMobileTilt={false}
+                    bio={mentor.bio}
+                    careerInterests={mentor.careerInterests}
+                    email={mentor.email}
+                    phone={mentor.phone}
+                    onContactClick={() => {
+                      const contactInfo = `📧 ${mentor.email}\n📱 ${mentor.phone}`;
+                      alert(contactInfo);
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* 3rd Year DAMP Mentors */}
+        {dampMentors.thirdYear.length > 0 && (
+          <div className="mb-20">
+            <h2 className="text-4xl font-bold gradient-text-blue mb-12 text-center">DAMP Mentors - 3rd Year</h2>
+            <div className="team-grid">
+              {dampMentors.thirdYear.map((mentor, index) => (
+                <div key={mentor.id} className="team-card stagger-animation" style={{animationDelay: `${index * 0.1}s`}}>
+                  <ProfileCard
+                    name={mentor.name}
+                    title="DAMP Mentor"
+                    handle={mentor.year}
+                    status=""
+                    contactText="Contact"
+                    avatarUrl={mentor.image || `https://ui-avatars.com/api/?name=${encodeURIComponent(mentor.name)}&background=3b82f6&color=fff&size=300`}
+                    showUserInfo={true}
+                    enableTilt={true}
+                    enableMobileTilt={false}
+                    bio={mentor.bio}
+                    careerInterests={mentor.careerInterests}
+                    email={mentor.email}
+                    phone={mentor.phone}
+                    onContactClick={() => {
+                      const contactInfo = `📧 ${mentor.email}\n📱 ${mentor.phone}`;
+                      alert(contactInfo);
+                    }}
+                  />
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
 
 
         {/* Join Us Section */}
-        <div className="glass-card rounded-3xl shadow-xl p-12">
+        {/* <div className="glass-card rounded-3xl shadow-xl p-12">
           <div className="text-center">
             <h2 className="text-3xl font-bold gradient-text-blue mb-6">Join Our Team</h2>
             <p className="text-neutral-600 mb-8 max-w-3xl mx-auto text-lg leading-relaxed">
@@ -177,7 +170,7 @@ const Team = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   )
