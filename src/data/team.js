@@ -16,7 +16,30 @@ const getImageUrl = (imageUrlOrPath) => {
   return null;
 };
 
-export const dampCoordinators = [];
+export const dampCoordinators = [
+  {
+    id: 1,
+    name: "Debashish Das",
+    rollNumber: "22b2463",
+    year: "4th Year",
+    email: "22b2463@iitb.ac.in",
+    phone: "8278634098",
+    image: getImageUrl("Images/Debashish Das.jpg"),
+    bio: "Hey! I am Debaa, a bengoli from Jaipur (no I can't do black magic). I really like playing the piano and keeping myself busy with the most random things. I also love watching anime and a big ferrari fan and also enjoy running. Always up for a chat....Feel free to reach out!",
+    careerInterests: "Consult, Strategy",
+  },
+  {
+    id: 2,
+    name: "Yash Kakade",
+    rollNumber: "22B2430",
+    year: "4th Year",
+    email: "yashkakade144@gmail.com",
+    phone: "9920828202",
+    image: getImageUrl("Images/Yash Kakade.jpg"),
+    bio: "Hi, I'm Yash. Born in Mumbai, raised on Manchester United heartbreaks, last-minute deadlines, and the belief that music at full volume improves exam performance. Always happy to help - just drop me a msg!",
+    careerInterests: "Consult, Finance, Civil Services",
+  },
+];
 
 export const dampMentors = {
   fifthYear: [
@@ -57,7 +80,7 @@ export const dampMentors = {
       email: "swayamj9231@gmail.com",
       phone: "8355902016",
       image: getImageUrl(
-        "Images/Damp - Swayamj Joshi.HEIC"
+        "Images/Swayamj Joshi.jpg"
       ),
       bio: "Hey, I am Swayamj, a fourthie from Mumbai. I enjoy playing the guitar and composing music. I also love football and probably the only Spurs fan you'll find on campus",
       careerInterests: "Consulting, Finance, Entrepreneurship",
@@ -141,6 +164,19 @@ export const dampMentors = {
       bio: "Hello! I'm Harsh and I'm natively from Ranchi (however I've lived in a lot of different places). I'm a huge football fan (A proud Chelsea fan as well as a midfielder on the pitch) and I like to listen to music as well as produce my own songs (you can hear my music on Spotify). I also like to travel, meet new people and have fun conversations. You would probably find me at Chaayos or just roaming around so feel free to stop by for a chat!",
       careerInterests: "Finance and Consulting",
     },
+    {
+      id: 9,
+      name: "Antara Pandey",
+      rollNumber: "22b2431",
+      year: "4th Year",
+      email: "pandeyantara.iitb@gmail.com",
+      phone: "7304295668",
+      image: getImageUrl(
+        "Images/Antara Pandey.jpeg"
+      ),
+      bio: "I’m a final-year undergraduate at IIT Bombay who spends as much time on the basketball court as I do juggling PORs, the occasional debate (rarely under DebSoc), entrepreneurial ideas, and consulting projects—mostly random case competitions. Sports have been a huge part of my life and have shaped how I think about teamwork, leadership, and staying calm under pressure (especially when the scoreboard isn’t in my favour). I’m naturally social, energetic, and curious, and I thrive around driven, like-minded people who enjoy good conversations and big ideas.",
+      careerInterests: "I am interested in careers that combine technology, strategy, and business decision-making, with a long-term goal of working in consulting, or product-driven organizations where analytical thinking and leadership create impact.",
+    },
   ],
 
   thirdYear: [
@@ -204,7 +240,7 @@ export const dampMentors = {
       email: "pratyakshb349@gmail.com",
       phone: "9662201929",
       image: getImageUrl(
-        "Images/Pratyaksh.png"
+        "Images/Pratyaksh.jpeg"
       ),
       bio: "Hey! I'm Pratyaksh — originally from UP, but thanks to my dad's transferable job, I've basically done a full India tour! Sooo if you randomly spot me in a new city, don't be surprised — I probably just moved there last week. Also I love hanging out with my friends (social battery: always charged !), but when I'm not out, you'll probably catch me deep in thought about my career— yeah, I overthink a bit, but who doesn't, right?",
       careerInterests: "Coding , Machine Learning , Data Science",
