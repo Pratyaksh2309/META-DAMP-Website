@@ -54,8 +54,8 @@ const Experiences = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
         <div className="text-center mb-20">
-          <h1 className="text-6xl md:text-7xl text-slate-900 font-bold mb-2 animate-slide-up">Experiences</h1>
-          <p className="text-xl text-slate-600 max-w-4xl mx-auto leading-relaxed animate-fade-in" style={{ animationDelay: '0.3s' }}>
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold gradient-text-blue mb-6 sm:mb-8 animate-slide-up">Experiences</h1>
+           <p className="text-lg sm:text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed animate-fade-in px-4" style={{animationDelay: '0.3s'}}>
             Real stories from MEMS students about their internships, higher studies, and project experiences.
           </p>
         </div>

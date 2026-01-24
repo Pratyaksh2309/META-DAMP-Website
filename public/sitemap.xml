@@ -38,9 +38,9 @@
     <priority>0.8</priority>
   </url>
 
-  <!-- Events Page -->
+  <!-- Initiatives Page -->
   <url>
-    <loc>https://mems-damp.netlify.app/events</loc>
+    <loc>https://mems-damp.netlify.app/initiatives</loc>
     <lastmod>2025-12-25</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>

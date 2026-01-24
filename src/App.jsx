@@ -11,8 +11,8 @@ import Experiences from './pages/Experiences'
 import ExperienceDetail from './pages/ExperienceDetail'
 import Tracks from './pages/Tracks'
 import TrackDetail from './pages/TrackDetail'
-import Events from './pages/Events'
-import EventDetail from './pages/EventDetail'
+import Initiatives from './pages/Initiatives'
+import InitiativeDetail from './pages/InitiativeDetail'
 import Team from './pages/Team'
 import Support from './pages/Support'
 import NotFound from './pages/NotFound'
@@ -38,8 +38,8 @@ function App() {
                 <Route path="/experience/:experienceId" element={<ExperienceDetail />} />
                 <Route path="/tracks" element={<Tracks />} />
                 <Route path="/track/:trackId" element={<TrackDetail />} />
-                <Route path="/events" element={<Events />} />
-                <Route path="/event/:eventId" element={<EventDetail />} />
+                <Route path="/initiatives" element={<Initiatives />} />
+                <Route path="/initiative/:initiativeId" element={<InitiativeDetail />} />
                 <Route path="/team" element={<Team />} />
                 <Route path="/support" element={<Support />} />
                 <Route path="*" element={<NotFound />} />

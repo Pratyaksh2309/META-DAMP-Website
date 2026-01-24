@@ -10,7 +10,7 @@ const Navigation = () => {
     { path: '/courses', label: 'Course Reviews' },
     { path: '/tracks', label: 'Course Tracks' },
     { path: '/experiences', label: 'Experiences' },
-    { path: '/events', label: 'Events' },
+    { path: '/initiatives', label: 'Initiatives' },
     { path: '/team', label: 'Team' },
     { path: '/support', label: 'Support' }
   ]
