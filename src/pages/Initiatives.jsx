@@ -70,7 +70,7 @@ const Initiatives = () => {
                     rel="noopener noreferrer"
                     className="inline-flex items-center gap-2 px-6 py-3 bg-primary-blue-600 text-white font-bold rounded-xl hover:bg-primary-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg hover:shadow-xl"
                   >
-                    Learn More
+                    Visit
                     <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
                     </svg>
