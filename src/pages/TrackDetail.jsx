@@ -1,80 +1,21 @@
 import { useParams, Link } from 'react-router-dom'
 import { useState } from 'react'
 import SEO from '../components/SEO'
+import { getTrackById, tracksData } from '../data/tracks'
 
 const TrackDetail = () => {
   const { trackId } = useParams()
   
-  const trackData = {
-    1: {
-      id: 1,
-      title: 'Data Science Minor',
-      description: 'Complete pathway for pursuing Data Science minor with MEMS core courses',
-      difficulty: 'Medium',
-      duration: '4 semesters',
-      prerequisites: 'Basic programming knowledge',
-      rating: 4.5,
-      totalStudents: 89,
-      detailedDescription: 'The Data Science Minor is designed for MEMS students who want to combine their mechanical engineering background with data analytics and machine learning skills. This track prepares you for the modern industry where data-driven decision making is crucial.',
-      courses: [
-        { code: 'CS 101', name: 'Computer Programming', semester: 'Sem 1', credits: 3, type: 'core' },
-        { code: 'CS 213', name: 'Data Structures', semester: 'Sem 2', credits: 4, type: 'core' },
-        { code: 'CS 419', name: 'Machine Learning', semester: 'Sem 3', credits: 4, type: 'elective' },
-        { code: 'CS 725', name: 'Data Mining', semester: 'Sem 4', credits: 3, type: 'elective' }
-      ],
-      careerPaths: [
-        'Data Scientist at Tech Companies',
-        'Machine Learning Engineer',
-        'Business Intelligence Analyst',
-        'Research Scientist',
-        'Product Manager (Technical)'
-      ],
-      skills: [
-        'Python Programming',
-        'Statistical Analysis',
-        'Machine Learning',
-        'Data Visualization',
-        'Database Management',
-        'Big Data Technologies'
-      ],
-      timeline: [
-        { semester: 'Semester 1', courses: ['CS 101'], focus: 'Programming Fundamentals' },
-        { semester: 'Semester 2', courses: ['CS 213'], focus: 'Data Structures & Algorithms' },
-        { semester: 'Semester 3', courses: ['CS 419'], focus: 'Machine Learning Concepts' },
-        { semester: 'Semester 4', courses: ['CS 725'], focus: 'Advanced Data Mining' }
-      ],
-      testimonials: [
-        {
-          id: 1,
-          author: 'Priya Sharma',
-          year: '2023',
-          company: 'Google',
-          role: 'Data Scientist',
-          content: 'The Data Science minor gave me the perfect foundation to transition into tech. The combination of MEMS problem-solving skills with data science is incredibly powerful.',
-          rating: 5
-        },
-        {
-          id: 2,
-          author: 'Rahul Kumar',
-          year: '2022',
-          company: 'Microsoft',
-          role: 'ML Engineer',
-          content: 'This track opened up so many opportunities. The coursework is challenging but very rewarding. Highly recommend for anyone interested in the intersection of engineering and data.',
-          rating: 4
-        }
-      ],
-      tips: [
-        'Start with CS 101 early - it builds the foundation for everything else',
-        'Practice coding regularly, not just during assignments',
-        'Join data science competitions like Kaggle to gain practical experience',
-        'Network with seniors who have completed this track',
-        'Consider internships at data-driven companies'
-      ]
-    }
-  }
-
-  const track = trackData[trackId] || trackData[1]
+  const track = getTrackById(trackId) || tracksData[0]
   const [activeTab, setActiveTab] = useState('overview')
+
+  const normalizeList = (value) => {
+    if (!value) {
+      return []
+    }
+
+    return Array.isArray(value) ? value.filter(Boolean) : [value]
+  }
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty.toLowerCase()) {
@@ -98,11 +39,47 @@ const TrackDetail = () => {
     ))
   }
 
+  const overviewItems = [
+    {
+      id: 'softPrerequisites',
+      title: 'Soft Prerequisites',
+      items: normalizeList(track.softPrerequisites)
+    },
+    {
+      id: 'logistics',
+      title: 'Dept / Logistics Notes',
+      items: normalizeList(track.logisticsChallenges)
+    },
+    {
+      id: 'utility',
+      title: 'Utility and Career Perspective',
+      items: normalizeList(track.utility)
+    }
+  ].filter(section => section.items.length > 0)
+
+  const courseList = normalizeList(track.courses)
+  const testimonialList = normalizeList(track.testimonials)
+  const tipList = normalizeList(track.tips)
+
+  const tabs = [
+    { id: 'overview', label: 'Overview', isVisible: true },
+    { id: 'courses', label: 'Courses', isVisible: courseList.length > 0 },
+    { id: 'testimonials', label: 'Student Stories', isVisible: testimonialList.length > 0 },
+    { id: 'tips', label: 'Tips', isVisible: tipList.length > 0 }
+  ].filter(tab => tab.isVisible)
+
+  const activeTabId = tabs.some(tab => tab.id === activeTab) ? activeTab : 'overview'
+
+  const seoDescription =
+    track.description ||
+    overviewItems[0]?.items[0] ||
+    `Student-sourced guide to ${track.title}.`
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-neutral-50 to-primary-blue-50">
       <SEO 
         title={`${track.title} - Academic Track`}
-        description={`Complete guide to ${track.title} for MEMS students. ${track.description} Includes course list, prerequisites, and semester planning.`}
+        description={seoDescription}
         keywords={`${track.title}, MEMS track, academic pathway, course planning, IIT Bombay`}
       />
       {/* Hero Section */}
@@ -134,15 +111,19 @@ const TrackDetail = () => {
               </h1>
               
               <p className="text-xl text-white/80 leading-relaxed mb-8">
-                {track.detailedDescription}
+                {seoDescription}
               </p>
               
               <div className="flex items-center space-x-6">
-                <div className="flex items-center">
-                  {renderStars(track.rating)}
-                  <span className="ml-2 text-white font-semibold">{track.rating}</span>
-                </div>
-                <span className="text-white/80">({track.totalStudents} students completed)</span>
+                {track.rating && (
+                  <div className="flex items-center">
+                    {renderStars(track.rating)}
+                    <span className="ml-2 text-white font-semibold">{track.rating}</span>
+                  </div>
+                )}
+                {testimonialList.length > 0 && (
+                  <span className="text-white/80">({testimonialList.length} student responses)</span>
+                )}
               </div>
             </div>
             
@@ -150,24 +131,32 @@ const TrackDetail = () => {
               <div className="glass-card rounded-3xl p-8 sticky top-8">
                 <h3 className="text-xl font-bold text-white mb-6">Track Details</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center">
-                    <span className="text-white/80">Duration:</span>
-                    <span className="text-white font-semibold">{track.duration}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-white/80">Prerequisites:</span>
-                    <span className="text-white font-semibold">{track.prerequisites}</span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-white/80">Difficulty:</span>
-                    <span className={`px-3 py-1 rounded-full text-sm font-bold ${getDifficultyColor(track.difficulty)}`}>
-                      {track.difficulty}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-white/80">Total Courses:</span>
-                    <span className="text-white font-semibold">{track.courses.length}</span>
-                  </div>
+                  {track.duration && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/80">Duration:</span>
+                      <span className="text-white font-semibold">{track.duration}</span>
+                    </div>
+                  )}
+                  {track.prerequisites && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/80">Prerequisites:</span>
+                      <span className="text-white font-semibold">{track.prerequisites}</span>
+                    </div>
+                  )}
+                  {track.difficulty && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/80">Difficulty:</span>
+                      <span className={`px-3 py-1 rounded-full text-sm font-bold ${getDifficultyColor(track.difficulty)}`}>
+                        {track.difficulty}
+                      </span>
+                    </div>
+                  )}
+                  {courseList.length > 0 && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/80">Total Courses:</span>
+                      <span className="text-white font-semibold">{courseList.length}</span>
+                    </div>
+                  )}
                 </div>
               </div>
             </div>
@@ -180,18 +169,12 @@ const TrackDetail = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Tab Navigation */}
           <div className="flex flex-wrap gap-2 mb-12 justify-center">
-            {[
-              { id: 'overview', label: 'Overview' },
-              { id: 'courses', label: 'Course Timeline' },
-              { id: 'careers', label: 'Career Paths' },
-              { id: 'testimonials', label: 'Student Stories' },
-              { id: 'tips', label: 'Success Tips' }
-            ].map((tab) => (
+            {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
                 className={`px-6 py-3 rounded-2xl font-semibold transition-all duration-300 ${
-                  activeTab === tab.id
+                  activeTabId === tab.id
                     ? 'bg-gradient-to-r from-primary-blue-500 to-accent-yellow-500 text-white shadow-glow'
                     : 'bg-white text-neutral-700 hover:bg-primary-blue-50 hover:text-primary-blue-600 shadow-md'
                 }`}
@@ -203,98 +186,60 @@ const TrackDetail = () => {
 
           {/* Tab Content */}
           <div className="max-w-4xl mx-auto">
-            {activeTab === 'overview' && (
+            {activeTabId === 'overview' && (
               <div className="space-y-8 animate-fade-in">
-                <div className="glass-card-blue rounded-3xl p-8">
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-6">Skills You'll Develop</h3>
-                  <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                    {track.skills.map((skill, index) => (
-                      <div key={index} className="flex items-center p-4 bg-white rounded-2xl shadow-sm">
-                        <div className="w-2 h-2 bg-primary-blue-500 rounded-full mr-4"></div>
-                        <span className="text-neutral-700 font-medium">{skill}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="glass-card-yellow rounded-3xl p-8">
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-6">Why Choose This Track?</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {overviewItems.map((section, sectionIndex) => (
+                  <div key={section.id} className={`rounded-3xl p-8 ${sectionIndex % 2 === 0 ? 'glass-card-blue' : 'glass-card-yellow'}`}>
+                    <h3 className="text-2xl font-bold text-neutral-900 mb-6">{section.title}</h3>
                     <div className="space-y-4">
-                      <div className="flex items-start">
-                        <div className="w-8 h-8 bg-accent-yellow-400 rounded-full flex items-center justify-center mr-4 mt-1">
-                          <span className="text-white text-sm">🚀</span>
+                      {section.items.map((item, itemIndex) => (
+                        <div key={itemIndex} className="flex items-start p-4 bg-white rounded-2xl shadow-sm">
+                          <div className="w-2 h-2 bg-primary-blue-500 rounded-full mr-4 mt-2"></div>
+                          <p className="text-neutral-700 leading-relaxed">{item}</p>
                         </div>
-                        <div>
-                          <h4 className="font-semibold text-neutral-900 mb-2">High Demand</h4>
-                          <p className="text-neutral-600">Data science roles are among the fastest growing in tech industry</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start">
-                        <div className="w-8 h-8 bg-accent-yellow-400 rounded-full flex items-center justify-center mr-4 mt-1">
-                          <span className="text-white text-sm">💰</span>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-neutral-900 mb-2">Excellent Salary</h4>
-                          <p className="text-neutral-600">Data scientists command premium salaries across industries</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="space-y-4">
-                      <div className="flex items-start">
-                        <div className="w-8 h-8 bg-accent-yellow-400 rounded-full flex items-center justify-center mr-4 mt-1">
-                          <span className="text-white text-sm">🔬</span>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-neutral-900 mb-2">Research Opportunities</h4>
-                          <p className="text-neutral-600">Perfect for students interested in research and innovation</p>
-                        </div>
-                      </div>
-                      <div className="flex items-start">
-                        <div className="w-8 h-8 bg-accent-yellow-400 rounded-full flex items-center justify-center mr-4 mt-1">
-                          <span className="text-white text-sm">🌐</span>
-                        </div>
-                        <div>
-                          <h4 className="font-semibold text-neutral-900 mb-2">Versatile Skills</h4>
-                          <p className="text-neutral-600">Applicable across multiple industries and domains</p>
-                        </div>
-                      </div>
+                      ))}
                     </div>
                   </div>
-                </div>
+                ))}
               </div>
             )}
 
-            {activeTab === 'courses' && (
+            {activeTabId === 'courses' && (
               <div className="space-y-8 animate-fade-in">
                 <div className="glass-card rounded-3xl p-8">
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-8">Course Timeline</h3>
-                  <div className="space-y-6">
-                    {track.timeline.map((item, index) => (
-                      <div key={index} className="relative">
-                        <div className="flex items-start">
-                          <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-primary-blue-500 to-accent-yellow-500 rounded-full flex items-center justify-center mr-6">
-                            <span className="text-white font-bold">{index + 1}</span>
+                  <h3 className="text-2xl font-bold text-neutral-900 mb-8">Courses Mentioned by Students</h3>
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    {courseList.map((course, index) => (
+                      <div key={index} className="bg-white rounded-2xl border border-primary-blue-100 p-6 shadow-sm">
+                        <div className="flex items-start justify-between mb-3">
+                          <div>
+                            <h4 className="text-lg font-bold text-neutral-900">{course.code || course.name}</h4>
+                            {course.name && (
+                              <p className="text-sm text-neutral-600">{course.name}</p>
+                            )}
                           </div>
-                          <div className="flex-1">
-                            <h4 className="text-xl font-bold text-neutral-900 mb-2">{item.semester}</h4>
-                            <p className="text-neutral-600 mb-4">{item.focus}</p>
-                            <div className="flex flex-wrap gap-2">
-                              {item.courses.map((courseCode, courseIndex) => {
-                                const courseDetail = track.courses.find(c => c.code === courseCode)
-                                return (
-                                  <div key={courseIndex} className="bg-primary-blue-50 border border-primary-blue-200 rounded-xl p-4">
-                                    <div className="font-semibold text-primary-blue-700">{courseDetail?.code}</div>
-                                    <div className="text-sm text-primary-blue-600">{courseDetail?.name}</div>
-                                    <div className="text-xs text-primary-blue-500">{courseDetail?.credits} credits</div>
-                                  </div>
-                                )
-                              })}
-                            </div>
-                          </div>
+                          <div className="text-xs text-primary-blue-600 font-semibold">{index + 1}</div>
                         </div>
-                        {index < track.timeline.length - 1 && (
-                          <div className="absolute left-6 top-12 w-0.5 h-16 bg-gradient-to-b from-primary-blue-300 to-accent-yellow-300"></div>
+                        <div className="space-y-2 text-sm text-neutral-600">
+                          {course.difficulty && (
+                            <div>Difficulty: {course.difficulty}</div>
+                          )}
+                          {course.semester && (
+                            <div>Semester: {course.semester}</div>
+                          )}
+                          {course.credits && (
+                            <div>Credits: {course.credits}</div>
+                          )}
+                        </div>
+                        {course.notes && (
+                          <ul className="mt-4 space-y-2 text-sm text-neutral-600">
+                            {normalizeList(course.notes).map((note, noteIndex) => (
+                              <li key={noteIndex} className="flex items-start">
+                                <span className="w-2 h-2 bg-primary-blue-400 rounded-full mr-3 mt-2"></span>
+                                <span>{note}</span>
+                              </li>
+                            ))}
+                          </ul>
                         )}
                       </div>
                     ))}
@@ -303,35 +248,32 @@ const TrackDetail = () => {
               </div>
             )}
 
-            {activeTab === 'careers' && (
-              <div className="glass-card rounded-3xl p-8 animate-fade-in">
-                <h3 className="text-2xl font-bold text-neutral-900 mb-6">🎯 Career Opportunities</h3>
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  {track.careerPaths.map((career, index) => (
-                    <div key={index} className="flex items-center p-4 bg-gradient-to-r from-primary-blue-50 to-accent-yellow-50 rounded-2xl border border-primary-blue-100">
-                      <div className="w-10 h-10 bg-gradient-to-r from-primary-blue-500 to-accent-yellow-500 rounded-xl flex items-center justify-center mr-4">
-                        <span className="text-white font-bold">{index + 1}</span>
-                      </div>
-                      <span className="text-neutral-700 font-medium">{career}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'testimonials' && (
+            {activeTabId === 'testimonials' && (
               <div className="space-y-6 animate-fade-in">
-                {track.testimonials.map((testimonial) => (
+                {testimonialList.map((testimonial) => (
                   <div key={testimonial.id} className="glass-card rounded-3xl p-8">
                     <div className="flex items-start justify-between mb-4">
                       <div>
-                        <h4 className="font-bold text-neutral-900">{testimonial.author}</h4>
-                        <p className="text-neutral-600">Class of {testimonial.year}</p>
-                        <p className="text-primary-blue-600 font-medium">{testimonial.role} at {testimonial.company}</p>
+                        {testimonial.author && (
+                          <h4 className="font-bold text-neutral-900">{testimonial.author}</h4>
+                        )}
+                        {testimonial.rollNumber && (
+                          <p className="text-neutral-600">{testimonial.rollNumber}</p>
+                        )}
+                        {testimonial.year && (
+                          <p className="text-neutral-600">Class of {testimonial.year}</p>
+                        )}
+                        {(testimonial.role || testimonial.company) && (
+                          <p className="text-primary-blue-600 font-medium">
+                            {[testimonial.role, testimonial.company].filter(Boolean).join(' at ')}
+                          </p>
+                        )}
                       </div>
-                      <div className="flex items-center">
-                        {renderStars(testimonial.rating)}
-                      </div>
+                      {testimonial.rating && (
+                        <div className="flex items-center">
+                          {renderStars(testimonial.rating)}
+                        </div>
+                      )}
                     </div>
                     
                     <p className="text-neutral-700 leading-relaxed italic">"{testimonial.content}"</p>
@@ -340,11 +282,11 @@ const TrackDetail = () => {
               </div>
             )}
 
-            {activeTab === 'tips' && (
+            {activeTabId === 'tips' && (
               <div className="glass-card rounded-3xl p-8 animate-fade-in">
-                <h3 className="text-2xl font-bold text-neutral-900 mb-6">💡 Success Tips from Alumni</h3>
+                <h3 className="text-2xl font-bold text-neutral-900 mb-6">Success Tips from Alumni</h3>
                 <div className="space-y-4">
-                  {track.tips.map((tip, index) => (
+                  {tipList.map((tip, index) => (
                     <div key={index} className="flex items-start p-4 bg-accent-yellow-50 rounded-2xl border border-accent-yellow-200">
                       <div className="w-6 h-6 bg-accent-yellow-400 rounded-full flex items-center justify-center mr-4 mt-0.5 flex-shrink-0">
                         <span className="text-white text-sm font-bold">{index + 1}</span>

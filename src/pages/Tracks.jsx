@@ -1,39 +1,35 @@
 import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import SEO from '../components/SEO'
+import { tracksData } from '../data/tracks'
 
 const Tracks = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
 
-  const tracks = [
-    {
-      id: 1,
-      title: 'Data Science Minor',
-      description: 'Complete pathway for pursuing Data Science minor with MEMS core courses',
-      courses: ['CS 101', 'CS 213', 'CS 419', 'CS 725'],
-      difficulty: 'Medium',
-      duration: '4 semesters',
-      prerequisites: 'Basic programming knowledge'
-    },
-    {
-      id: 2,
-      title: 'Core MEMS Track',
-      description: 'Traditional mechanical engineering pathway focusing on core MEMS subjects',
-      courses: ['ME 201', 'ME 202', 'ME 301', 'ME 302'],
-      difficulty: 'Hard',
-      duration: '8 semesters',
-      prerequisites: 'None'
-    },
-    {
-      id: 3,
-      title: 'Robotics Specialization',
-      description: 'Specialized track combining mechanical engineering with robotics and automation',
-      courses: ['ME 316', 'EE 224', 'CS 101', 'ME 412'],
-      difficulty: 'Hard',
-      duration: '6 semesters',
-      prerequisites: 'Basic electronics knowledge'
+  const tracks = tracksData
+
+  const getPrerequisitesPreview = (track) => {
+    if (track.prerequisites) {
+      return track.prerequisites
     }
-  ]
+
+    if (Array.isArray(track.softPrerequisites)) {
+      return track.softPrerequisites[0]
+    }
+
+    return track.softPrerequisites
+  }
+
+  const getCoursePreview = (track) => {
+    if (!track.courses?.length) {
+      return []
+    }
+
+    return track.courses
+      .map(course => course.code || course.name)
+      .filter(Boolean)
+      .slice(0, 6)
+  }
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty.toLowerCase()) {
@@ -118,7 +114,11 @@ const Tracks = () => {
 
         {/* Track Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {tracks.map((track, index) => (
+          {tracks.map((track, index) => {
+            const coursePreview = getCoursePreview(track)
+            const prerequisitesPreview = getPrerequisitesPreview(track)
+
+            return (
             <div key={track.id} className="stagger-animation bg-white/80 backdrop-blur-sm rounded-3xl shadow-xl card-hover p-10 border border-white/50 group relative overflow-hidden" style={{animationDelay: `${index * 0.1}s`}}>
               {/* Gradient Overlay */}
               <div className="absolute inset-0 bg-gradient-to-br from-primary-blue-500/5 to-accent-yellow-500/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
@@ -129,36 +129,46 @@ const Tracks = () => {
                     <h3 className="text-2xl font-bold text-neutral-900 group-hover:text-primary-blue-600 transition-colors duration-300 mb-2">{track.title}</h3>
                     <p className="text-neutral-600">{track.description}</p>
                   </div>
-                  <span className={`px-4 py-2 text-sm font-bold rounded-2xl shadow-sm border ${getDifficultyColor(track.difficulty)}`}>
-                    {track.difficulty}
-                  </span>
+                  {track.difficulty && (
+                    <span className={`px-4 py-2 text-sm font-bold rounded-2xl shadow-sm border ${getDifficultyColor(track.difficulty)}`}>
+                      {track.difficulty}
+                    </span>
+                  )}
                 </div>
 
               {/* Track Details */}
                 <div className="space-y-6 mb-8">
-                  <div>
-                    <h4 className="font-semibold text-neutral-800 mb-3">Key Courses:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {track.courses.map((course, index) => (
-                        <span key={index} className="px-4 py-2 bg-primary-blue-100 text-primary-blue-700 rounded-full text-sm font-medium">
-                          {course}
-                        </span>
-                      ))}
+                  {coursePreview.length > 0 && (
+                    <div>
+                      <h4 className="font-semibold text-neutral-800 mb-3">Key Courses:</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {coursePreview.map((course, courseIndex) => (
+                          <span key={courseIndex} className="px-4 py-2 bg-primary-blue-100 text-primary-blue-700 rounded-full text-sm font-medium">
+                            {course}
+                          </span>
+                        ))}
+                      </div>
                     </div>
-                  </div>
+                  )}
 
-                  <div className="space-y-4 text-neutral-600">
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-primary-blue-500 rounded-full mr-3"></div>
-                      <span className="font-semibold text-neutral-800">Duration:</span>
-                      <span className="ml-2">{track.duration}</span>
+                  {(track.duration || prerequisitesPreview) && (
+                    <div className="space-y-4 text-neutral-600">
+                      {track.duration && (
+                        <div className="flex items-center">
+                          <div className="w-2 h-2 bg-primary-blue-500 rounded-full mr-3"></div>
+                          <span className="font-semibold text-neutral-800">Duration:</span>
+                          <span className="ml-2">{track.duration}</span>
+                        </div>
+                      )}
+                      {prerequisitesPreview && (
+                        <div className="flex items-center">
+                          <div className="w-2 h-2 bg-accent-yellow-500 rounded-full mr-3"></div>
+                          <span className="font-semibold text-neutral-800">Prerequisites:</span>
+                          <span className="ml-2">{prerequisitesPreview}</span>
+                        </div>
+                      )}
                     </div>
-                    <div className="flex items-center">
-                      <div className="w-2 h-2 bg-accent-yellow-500 rounded-full mr-3"></div>
-                      <span className="font-semibold text-neutral-800">Prerequisites:</span>
-                      <span className="ml-2">{track.prerequisites}</span>
-                    </div>
-                  </div>
+                  )}
                 </div>
 
               {/* Action Buttons */}
@@ -178,7 +188,8 @@ const Tracks = () => {
                 </div>
               </div>
             </div>
-          ))}
+            )
+          })}
         </div>
       </div>
     </div>
