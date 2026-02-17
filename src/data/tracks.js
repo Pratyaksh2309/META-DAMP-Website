@@ -103,16 +103,16 @@ export const tracksData = [
       }
     ]
   },
-  {
-    id: 3,
-    title: 'Robotics Minor',
-    department: 'Robotics',
-    description: 'Big basket but a lot of courses don\'t run half the time.',
-    logisticsChallenges: [
-      'Big basket but a lot of courses don\'t run half the time.'
-    ],
-    courses: []
-  },
+  // {
+  //   id: 3,
+  //   title: 'Robotics Minor',
+  //   department: 'Robotics',
+  //   description: 'Big basket but a lot of courses don\'t run half the time.',
+  //   logisticsChallenges: [
+  //     'Big basket but a lot of courses don\'t run half the time.'
+  //   ],
+  //   courses: []
+  // },
   {
     id: 4,
     title: 'Data Science (CMiNDS) Minor',

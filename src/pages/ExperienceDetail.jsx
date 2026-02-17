@@ -1,83 +1,19 @@
-import { useParams, Link } from 'react-router-dom'
+import { useParams, Link, Navigate } from 'react-router-dom'
 import { useState } from 'react'
 import SEO from '../components/SEO'
+import { experiencesData } from '../data/experiences'
 
 const ExperienceDetail = () => {
   const { experienceId } = useParams()
-  
-  const experienceData = {
-    1: {
-      id: 1,
-      title: 'Google Software Engineering Intern',
-      category: 'internship',
-      type: 'software',
-      company: 'Google',
-      duration: 'Summer 2024',
-      location: 'Bangalore',
-      cpi: '9.2+',
-      author: 'Arjun Patel',
-      year: '2024',
-      rating: 5,
-      salary: '₹1,20,000/month',
-      team: 'Google Search',
-      description: 'An incredible 10-week journey at Google Bangalore working on search algorithms and machine learning systems. This internship completely transformed my understanding of large-scale software development.',
-      applicationProcess: {
-        timeline: 'Applied in August, interviewed in September, offer in October',
-        rounds: [
-          { name: 'Online Assessment', description: 'Coding problems on HackerEarth platform' },
-          { name: 'Technical Round 1', description: 'Data structures and algorithms focus' },
-          { name: 'Technical Round 2', description: 'System design and problem solving' },
-          { name: 'HR Round', description: 'Cultural fit and motivation discussion' }
-        ]
-      },
-      preparation: [
-        'Solved 300+ problems on LeetCode focusing on medium-hard difficulty',
-        'Practiced system design using Grokking the System Design course',
-        'Built 3 full-stack projects showcasing different technologies',
-        'Participated in competitive programming contests regularly',
-        'Mock interviews with seniors and friends'
-      ],
-      workExperience: {
-        project: 'Search Query Understanding',
-        technologies: ['Python', 'TensorFlow', 'C++', 'BigQuery', 'Kubernetes'],
-        responsibilities: [
-          'Developed ML models to improve search query understanding',
-          'Optimized existing algorithms reducing latency by 15%',
-          'Collaborated with cross-functional teams across 3 time zones',
-          'Presented findings to senior engineers and product managers'
-        ],
-        learnings: [
-          'Large-scale distributed systems architecture',
-          'Machine learning in production environments',
-          'Code review processes and engineering best practices',
-          'Working in diverse, global teams'
-        ]
-      },
-      tips: [
-        'Start preparing at least 6 months before application deadlines',
-        'Focus on fundamentals - data structures and algorithms are crucial',
-        'Build projects that demonstrate your passion for technology',
-        'Practice explaining your thought process during problem solving',
-        'Network with current employees through LinkedIn and referrals'
-      ],
-      pros: [
-        'Excellent learning opportunities',
-        'World-class mentorship',
-        'Great work-life balance',
-        'Amazing office facilities',
-        'Strong brand value for future opportunities'
-      ],
-      cons: [
-        'Highly competitive selection process',
-        'High performance expectations',
-        'Fast-paced environment can be overwhelming initially'
-      ],
-      advice: 'Google internship is life-changing but requires serious preparation. Start early, be consistent, and don\'t give up. The experience is worth every effort you put in.'
-    }
-  }
-
-  const experience = experienceData[experienceId] || experienceData[1]
   const [activeTab, setActiveTab] = useState('overview')
+  
+  // Find experience from data
+  const experience = experiencesData.find(exp => exp.id === parseInt(experienceId))
+  
+  // If experience not found, redirect to experiences page
+  if (!experience) {
+    return <Navigate to="/experiences" replace />
+  }
 
   const getTypeColor = (type) => {
     switch (type) {
@@ -85,8 +21,39 @@ const ExperienceDetail = () => {
       case 'research': return 'bg-neutral-100 text-neutral-700 border-neutral-200'
       case 'masters': return 'bg-emerald-100 text-emerald-700 border-emerald-200'
       case 'consulting': return 'bg-accent-yellow-100 text-accent-yellow-700 border-accent-yellow-200'
+      case 'finance': return 'bg-purple-100 text-purple-700 border-purple-200'
+      case 'exchange': return 'bg-teal-100 text-teal-700 border-teal-200'
       default: return 'bg-neutral-100 text-neutral-700 border-neutral-200'
     }
+  }
+
+  // Get tabs based on experience category
+  const getTabs = () => {
+    if (experience.category === 'internship') {
+      return [
+        { id: 'overview', label: 'Overview' },
+        { id: 'selection', label: 'Selection Process' },
+        { id: 'work', label: 'Work Experience' },
+        { id: 'preparation', label: 'Preparation' },
+        { id: 'tips', label: 'Tips & Advice' }
+      ]
+    } else if (experience.category === 'research') {
+      return [
+        { id: 'overview', label: 'Overview' },
+        { id: 'work', label: 'Research Work' },
+        { id: 'selection', label: 'Selection Process' },
+        { id: 'tips', label: 'Tips & Advice' }
+      ]
+    } else if (experience.category === 'semester-exchange') {
+      return [
+        { id: 'overview', label: 'Overview' },
+        { id: 'enrollment', label: 'Enrollment Process' },
+        { id: 'experience', label: 'Experience' },
+        { id: 'courses', label: 'Course Mapping' },
+        { id: 'tips', label: 'Tips & Advice' }
+      ]
+    }
+    return [{ id: 'overview', label: 'Overview' }]
   }
 
   const renderStars = (rating) => {
@@ -137,20 +104,22 @@ const ExperienceDetail = () => {
                 {experience.title}
               </h1>
               <h2 className="text-2xl md:text-3xl text-white/90 mb-6">
-                {experience.company} • {experience.location}
+                {experience.company} {experience.location && `• ${experience.location}`}
               </h2>
               
               <p className="text-xl text-white/80 leading-relaxed mb-8">
                 {experience.description}
               </p>
               
-              <div className="flex items-center space-x-6">
-                <div className="flex items-center">
-                  {renderStars(experience.rating)}
-                  <span className="ml-2 text-white font-semibold">{experience.rating}/5</span>
+              {experience.rating && (
+                <div className="flex items-center space-x-6">
+                  <div className="flex items-center">
+                    {renderStars(experience.rating)}
+                    <span className="ml-2 text-white font-semibold">{experience.rating}/5</span>
+                  </div>
+                  <span className="text-white/80">Overall Experience</span>
                 </div>
-                <span className="text-white/80">Overall Experience</span>
-              </div>
+              )}
             </div>
             
             <div className="lg:col-span-1">
@@ -158,9 +127,15 @@ const ExperienceDetail = () => {
                 <h3 className="text-xl font-bold text-white mb-6">Experience Details</h3>
                 <div className="space-y-4">
                   <div className="flex justify-between items-center">
-                    <span className="text-white/80">Author:</span>
-                    <span className="text-white font-semibold">{experience.author}</span>
+                    <span className="text-white/80">Student:</span>
+                    <span className="text-white font-semibold">{experience.studentName}</span>
                   </div>
+                  {experience.rollNumber && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/80">Roll Number:</span>
+                      <span className="text-white font-semibold">{experience.rollNumber}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between items-center">
                     <span className="text-white/80">Year:</span>
                     <span className="text-white font-semibold">{experience.year}</span>
@@ -169,20 +144,22 @@ const ExperienceDetail = () => {
                     <span className="text-white/80">Duration:</span>
                     <span className="text-white font-semibold">{experience.duration}</span>
                   </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-white/80">CPI Required:</span>
-                    <span className="text-white font-semibold">{experience.cpi}</span>
-                  </div>
+                  {experience.role && (
+                    <div className="flex justify-between items-center">
+                      <span className="text-white/80">Role:</span>
+                      <span className="text-white font-semibold">{experience.role}</span>
+                    </div>
+                  )}
                   <div className="flex justify-between items-center">
                     <span className="text-white/80">Type:</span>
                     <span className={`px-3 py-1 rounded-full text-sm font-bold ${getTypeColor(experience.type)}`}>
                       {experience.type}
                     </span>
                   </div>
-                  {experience.salary && (
+                  {experience.rating && (
                     <div className="flex justify-between items-center">
-                      <span className="text-white/80">Stipend:</span>
-                      <span className="text-white font-semibold">{experience.salary}</span>
+                      <span className="text-white/80">Rating:</span>
+                      <span className="text-white font-semibold">{experience.rating}/5</span>
                     </div>
                   )}
                 </div>
@@ -197,13 +174,7 @@ const ExperienceDetail = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Tab Navigation */}
           <div className="flex flex-wrap gap-2 mb-12 justify-center">
-            {[
-              { id: 'overview', label: 'Overview' },
-              { id: 'application', label: 'Application Process' },
-              { id: 'work', label: 'Work Experience' },
-              { id: 'preparation', label: 'Preparation' },
-              { id: 'advice', label: 'Tips & Advice' }
-            ].map((tab) => (
+            {getTabs().map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
@@ -220,161 +191,308 @@ const ExperienceDetail = () => {
 
           {/* Tab Content */}
           <div className="max-w-4xl mx-auto">
-            {activeTab === 'overview' && (
-              <div className="space-y-8 animate-fade-in">
-                <div className="glass-card-blue rounded-3xl p-8">
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-6">What I Worked On</h3>
-                  <div className="mb-6">
-                    <h4 className="font-semibold text-neutral-800 mb-2">Project: {experience.workExperience.project}</h4>
-                    <p className="text-neutral-600 mb-4">Team: {experience.team}</p>
-                  </div>
-                  <div>
-                    <h4 className="font-semibold text-neutral-800 mb-3">Technologies Used:</h4>
-                    <div className="flex flex-wrap gap-2">
-                      {experience.workExperience.technologies.map((tech, index) => (
-                        <span key={index} className="px-4 py-2 bg-primary-blue-100 text-primary-blue-700 rounded-full font-medium">
-                          {tech}
-                        </span>
-                      ))}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <div className="glass-card rounded-3xl p-6">
-                    <h4 className="font-bold text-emerald-700 mb-4 flex items-center">
-                      <span className="text-lg mr-2">👍</span> Pros
-                    </h4>
-                    <ul className="space-y-3">
-                      {experience.pros.map((pro, index) => (
-                        <li key={index} className="text-neutral-600 flex items-start">
-                          <div className="w-1.5 h-1.5 bg-emerald-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                          {pro}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <div className="glass-card rounded-3xl p-6">
-                    <h4 className="font-bold text-rose-700 mb-4 flex items-center">
-                      <span className="text-lg mr-2">👎</span> Cons
-                    </h4>
-                    <ul className="space-y-3">
-                      {experience.cons.map((con, index) => (
-                        <li key={index} className="text-neutral-600 flex items-start">
-                          <div className="w-1.5 h-1.5 bg-rose-500 rounded-full mr-3 mt-2 flex-shrink-0"></div>
-                          {con}
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'application' && (
-              <div className="space-y-8 animate-fade-in">
-                <div className="glass-card rounded-3xl p-8">
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-6">Application Timeline</h3>
-                  <p className="text-neutral-600 mb-8 text-lg">{experience.applicationProcess.timeline}</p>
-                  
-                  <div className="space-y-6">
-                    {experience.applicationProcess.rounds.map((round, index) => (
-                      <div key={index} className="relative">
-                        <div className="flex items-start">
-                          <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-primary-blue-500 to-accent-yellow-500 rounded-full flex items-center justify-center mr-6">
-                            <span className="text-white font-bold">{index + 1}</span>
-                          </div>
-                          <div className="flex-1">
-                            <h4 className="text-xl font-bold text-neutral-900 mb-2">{round.name}</h4>
-                            <p className="text-neutral-600">{round.description}</p>
+            {/* INTERNSHIP EXPERIENCE TABS */}
+            {experience.category === 'internship' && (
+              <>
+                {activeTab === 'overview' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div className="glass-card-blue rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-6">What I Worked On</h3>
+                      <p className="text-neutral-600 mb-6 text-lg">{experience.workDescription}</p>
+                      
+                      {experience.technologies && experience.technologies.length > 0 && (
+                        <div>
+                          <h4 className="font-semibold text-neutral-800 mb-3">Technologies Used:</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {experience.technologies.map((tech, index) => (
+                              <span key={index} className="px-4 py-2 bg-primary-blue-100 text-primary-blue-700 rounded-full font-medium">
+                                {tech}
+                              </span>
+                            ))}
                           </div>
                         </div>
-                        {index < experience.applicationProcess.rounds.length - 1 && (
-                          <div className="absolute left-6 top-12 w-0.5 h-16 bg-gradient-to-b from-primary-blue-300 to-accent-yellow-300"></div>
+                      )}
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {experience.pros && (
+                        <div className="glass-card rounded-3xl p-6">
+                          <h4 className="font-bold text-emerald-700 mb-4 flex items-center">
+                            Pros
+                          </h4>
+                          <p className="text-neutral-600 leading-relaxed whitespace-pre-line">{experience.pros}</p>
+                        </div>
+                      )}
+                      {experience.cons && (
+                        <div className="glass-card rounded-3xl p-6">
+                          <h4 className="font-bold text-rose-700 mb-4 flex items-center">
+                            Cons
+                          </h4>
+                          <p className="text-neutral-600 leading-relaxed whitespace-pre-line">{experience.cons}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'selection' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div className="glass-card rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-6">Selection Process</h3>
+                      <p className="text-neutral-700 text-lg leading-relaxed whitespace-pre-line">{experience.selectionProcess}</p>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'work' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div className="glass-card-yellow rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-6">Work Experience</h3>
+                      <p className="text-neutral-700 text-lg leading-relaxed whitespace-pre-line">{experience.workExperience}</p>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'preparation' && (
+                  <div className="glass-card rounded-3xl p-8 animate-fade-in">
+                    <h3 className="text-2xl font-bold text-neutral-900 mb-6">How to Prepare</h3>
+                    <p className="text-neutral-700 text-lg leading-relaxed whitespace-pre-line">{experience.preparation}</p>
+                  </div>
+                )}
+
+                {activeTab === 'tips' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div className="glass-card rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-6">Tips for Success</h3>
+                      <p className="text-neutral-700 text-lg leading-relaxed whitespace-pre-line">{experience.tips}</p>
+                    </div>
+
+                    <div className="glass-card-yellow rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-4">About the Author</h3>
+                      <div className="flex items-center">
+                        <div className="w-12 h-12 bg-gradient-to-r from-primary-blue-500 to-accent-yellow-500 rounded-full flex items-center justify-center mr-4">
+                          <span className="text-white font-bold text-xl">{experience.studentName.charAt(0)}</span>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-neutral-900">{experience.studentName}</p>
+                          <p className="text-neutral-600">{experience.rollNumber} • Class of {experience.year}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+
+            {/* RESEARCH EXPERIENCE TABS */}
+            {experience.category === 'research' && (
+              <>
+                {activeTab === 'overview' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div className="glass-card-blue rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-6">Project Overview</h3>
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="font-semibold text-neutral-800 mb-2">Project Name:</h4>
+                          <p className="text-neutral-600">{experience.projectName}</p>
+                        </div>
+                        {experience.guide && (
+                          <div>
+                            <h4 className="font-semibold text-neutral-800 mb-2">Guide:</h4>
+                            <p className="text-neutral-600">{experience.guide}</p>
+                          </div>
+                        )}
+                        <div>
+                          <h4 className="font-semibold text-neutral-800 mb-2">Description:</h4>
+                          <p className="text-neutral-600">{experience.description}</p>
+                        </div>
+                      </div>
+                      
+                      {experience.technologies && experience.technologies.length > 0 && (
+                        <div className="mt-6">
+                          <h4 className="font-semibold text-neutral-800 mb-3">Technologies/Software Used:</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {experience.technologies.map((tech, index) => (
+                              <span key={index} className="px-4 py-2 bg-primary-blue-100 text-primary-blue-700 rounded-full font-medium">
+                                {tech}
+                              </span>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {experience.pros && (
+                        <div className="glass-card rounded-3xl p-6">
+                          <h4 className="font-bold text-emerald-700 mb-4 flex items-center">
+                            Pros
+                          </h4>
+                          <p className="text-neutral-600 leading-relaxed whitespace-pre-line">{experience.pros}</p>
+                        </div>
+                      )}
+                      {experience.cons && (
+                        <div className="glass-card rounded-3xl p-6">
+                          <h4 className="font-bold text-rose-700 mb-4 flex items-center">
+                            Cons
+                          </h4>
+                          <p className="text-neutral-600 leading-relaxed whitespace-pre-line">{experience.cons}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'work' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div className="glass-card-yellow rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-6">Research Work</h3>
+                      <p className="text-neutral-700 text-lg leading-relaxed whitespace-pre-line">{experience.workDescription}</p>
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'selection' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div className="glass-card rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-6">Selection Process</h3>
+                      <p className="text-neutral-700 text-lg leading-relaxed whitespace-pre-line">{experience.selectionProcess}</p>
+                      
+                      {experience.preparation && experience.preparation !== 'NA' && (
+                        <div className="mt-6">
+                          <h4 className="font-semibold text-neutral-800 mb-3">Preparation:</h4>
+                          <p className="text-neutral-600 leading-relaxed whitespace-pre-line">{experience.preparation}</p>
+                        </div>
+                      )}
+                    </div>
+                  </div>
+                )}
+
+                {activeTab === 'tips' && (
+                  <div className="space-y-8 animate-fade-in">
+                    {experience.tips && experience.tips !== 'NA' && (
+                      <div className="glass-card rounded-3xl p-8">
+                        <h3 className="text-2xl font-bold text-neutral-900 mb-6">Tips & Advice</h3>
+                        <p className="text-neutral-700 text-lg leading-relaxed whitespace-pre-line">{experience.tips}</p>
+                      </div>
+                    )}
+
+                    <div className="glass-card-yellow rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-4">About the Researcher</h3>
+                      <div className="flex items-center">
+                        <div className="w-12 h-12 bg-gradient-to-r from-primary-blue-500 to-accent-yellow-500 rounded-full flex items-center justify-center mr-4">
+                          <span className="text-white font-bold text-xl">{experience.studentName.charAt(0)}</span>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-neutral-900">{experience.studentName}</p>
+                          <p className="text-neutral-600">{experience.rollNumber} • {experience.year}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </>
+            )}
+
+            {/* SEMESTER EXCHANGE TABS */}
+            {experience.category === 'semester-exchange' && (
+              <>
+                {activeTab === 'overview' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div className="glass-card-blue rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-6">Exchange Program Overview</h3>
+                      <div className="space-y-4">
+                        <div>
+                          <h4 className="font-semibold text-neutral-800 mb-2">University:</h4>
+                          <p className="text-neutral-600">{experience.company}</p>
+                        </div>
+                        {experience.semester && (
+                          <div>
+                            <h4 className="font-semibold text-neutral-800 mb-2">Semester:</h4>
+                            <p className="text-neutral-600">Semester {experience.semester}</p>
+                          </div>
+                        )}
+                        {experience.scholarships && (
+                          <div>
+                            <h4 className="font-semibold text-neutral-800 mb-2">Scholarships:</h4>
+                            <p className="text-neutral-600">{experience.scholarships}</p>
+                          </div>
                         )}
                       </div>
-                    ))}
+                    </div>
                   </div>
-                </div>
-              </div>
-            )}
+                )}
 
-            {activeTab === 'work' && (
-              <div className="space-y-8 animate-fade-in">
-                <div className="glass-card-yellow rounded-3xl p-8">
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-6">Key Responsibilities</h3>
-                  <div className="space-y-4">
-                    {experience.workExperience.responsibilities.map((responsibility, index) => (
-                      <div key={index} className="flex items-start p-4 bg-white rounded-2xl shadow-sm">
-                        <div className="w-6 h-6 bg-accent-yellow-400 rounded-full flex items-center justify-center mr-4 mt-0.5 flex-shrink-0">
-                          <span className="text-white text-sm font-bold">{index + 1}</span>
+                {activeTab === 'enrollment' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div className="glass-card rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-6">Enrollment Process</h3>
+                      <p className="text-neutral-700 text-lg leading-relaxed whitespace-pre-line">{experience.enrollmentProcess}</p>
+                      
+                      {experience.bottlenecks && (
+                        <div className="mt-6">
+                          <h4 className="font-semibold text-neutral-800 mb-3">Bottlenecks:</h4>
+                          <p className="text-neutral-600 leading-relaxed whitespace-pre-line">{experience.bottlenecks}</p>
                         </div>
-                        <p className="text-neutral-700">{responsibility}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                <div className="glass-card rounded-3xl p-8">
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-6">Key Learnings</h3>
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                    {experience.workExperience.learnings.map((learning, index) => (
-                      <div key={index} className="flex items-start p-4 bg-primary-blue-50 rounded-2xl border border-primary-blue-100">
-                        <div className="w-2 h-2 bg-primary-blue-500 rounded-full mr-4 mt-2"></div>
-                        <span className="text-neutral-700 font-medium">{learning}</span>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            )}
-
-            {activeTab === 'preparation' && (
-              <div className="glass-card rounded-3xl p-8 animate-fade-in">
-                <h3 className="text-2xl font-bold text-neutral-900 mb-6">🎯 How I Prepared</h3>
-                <div className="space-y-4">
-                  {experience.preparation.map((step, index) => (
-                    <div key={index} className="flex items-start p-4 bg-accent-yellow-50 rounded-2xl border border-accent-yellow-200">
-                      <div className="w-6 h-6 bg-accent-yellow-400 rounded-full flex items-center justify-center mr-4 mt-0.5 flex-shrink-0">
-                        <span className="text-white text-sm font-bold">{index + 1}</span>
-                      </div>
-                      <p className="text-neutral-700 leading-relaxed">{step}</p>
+                      )}
                     </div>
-                  ))}
-                </div>
-              </div>
-            )}
+                  </div>
+                )}
 
-            {activeTab === 'advice' && (
-              <div className="space-y-8 animate-fade-in">
-                <div className="glass-card rounded-3xl p-8">
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-6">💡 Tips for Success</h3>
-                  <div className="space-y-4">
-                    {experience.tips.map((tip, index) => (
-                      <div key={index} className="flex items-start p-4 bg-primary-blue-50 rounded-2xl border border-primary-blue-200">
-                        <div className="w-6 h-6 bg-primary-blue-400 rounded-full flex items-center justify-center mr-4 mt-0.5 flex-shrink-0">
-                          <span className="text-white text-sm font-bold">{index + 1}</span>
+                {activeTab === 'experience' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      {experience.thingsLiked && (
+                        <div className="glass-card rounded-3xl p-6">
+                          <h4 className="font-bold text-emerald-700 mb-4 flex items-center">
+                            Things I Liked
+                          </h4>
+                          <p className="text-neutral-600 leading-relaxed whitespace-pre-line">{experience.thingsLiked}</p>
                         </div>
-                        <p className="text-neutral-700 leading-relaxed">{tip}</p>
-                      </div>
-                    ))}
+                      )}
+                      {experience.challenges && (
+                        <div className="glass-card rounded-3xl p-6">
+                          <h4 className="font-bold text-rose-700 mb-4 flex items-center">
+                            Challenges
+                          </h4>
+                          <p className="text-neutral-600 leading-relaxed whitespace-pre-line">{experience.challenges}</p>
+                        </div>
+                      )}
+                    </div>
                   </div>
-                </div>
+                )}
 
-                <div className="glass-card-yellow rounded-3xl p-8">
-                  <h3 className="text-2xl font-bold text-neutral-900 mb-4">Final Advice</h3>
-                  <p className="text-neutral-700 text-lg leading-relaxed italic">"{experience.advice}"</p>
-                  <div className="mt-6 flex items-center">
-                    <div className="w-12 h-12 bg-gradient-to-r from-primary-blue-500 to-accent-yellow-500 rounded-full flex items-center justify-center mr-4">
-                      <span className="text-white font-bold">{experience.author.charAt(0)}</span>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-neutral-900">{experience.author}</p>
-                      <p className="text-neutral-600">Class of {experience.year}</p>
+                {activeTab === 'courses' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div className="glass-card-yellow rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-6">Course Mapping</h3>
+                      <p className="text-neutral-700 text-lg leading-relaxed whitespace-pre-line">{experience.courseMapping}</p>
                     </div>
                   </div>
-                </div>
-              </div>
+                )}
+
+                {activeTab === 'tips' && (
+                  <div className="space-y-8 animate-fade-in">
+                    <div className="glass-card rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-6">Tips for Future Applicants</h3>
+                      <p className="text-neutral-700 text-lg leading-relaxed whitespace-pre-line">{experience.tips}</p>
+                    </div>
+
+                    <div className="glass-card-yellow rounded-3xl p-8">
+                      <h3 className="text-2xl font-bold text-neutral-900 mb-4">About the Student</h3>
+                      <div className="flex items-center">
+                        <div className="w-12 h-12 bg-gradient-to-r from-primary-blue-500 to-accent-yellow-500 rounded-full flex items-center justify-center mr-4">
+                          <span className="text-white font-bold text-xl">{experience.studentName.charAt(0)}</span>
+                        </div>
+                        <div>
+                          <p className="font-semibold text-neutral-900">{experience.studentName}</p>
+                          <p className="text-neutral-600">{experience.rollNumber} • {experience.year}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                )}
+              </>
             )}
           </div>
         </div>

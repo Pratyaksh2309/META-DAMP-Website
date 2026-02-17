@@ -205,7 +205,7 @@ const Support = () => {
                       <svg className="w-5 h-5 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path>
                       </svg>
-                      <span className="text-text-secondary">damp.mems@iitb.ac.in</span>
+                      <span className="text-text-secondary">memsdampc2025@gmail.com</span>
                     </div>
                     <div className="flex items-center">
                       <svg className="w-5 h-5 text-accent mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -220,14 +220,11 @@ const Support = () => {
                 <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
                   <h3 className="text-lg font-semibold text-text-primary mb-4">Quick Links</h3>
                   <div className="space-y-2">
-                    <a href="https://mems.iitb.ac.in" className="block text-accent hover:text-accent-hover">
+                    <a href="https://www.iitb.ac.in/mems/en" target='_blank' className="block text-accent hover:text-accent-hover">
                       MEMS Department Website
                     </a>
-                    <a href="#" className="block text-accent hover:text-accent-hover">
+                    <a target='_blank' href="https://acad.iitb.ac.in/files/Academic%20Calendar%202025-26_FINAL.pdf" className="block text-accent hover:text-accent-hover">
                       Academic Calendar
-                    </a>
-                    <a href="#" className="block text-accent hover:text-accent-hover">
-                      Course Catalog
                     </a>
                   </div>
                 </div>
@@ -235,8 +232,8 @@ const Support = () => {
                 <div className="bg-white rounded-lg shadow-md p-6 border border-gray-200">
                   <h3 className="text-lg font-semibold text-text-primary mb-4">Office Hours</h3>
                   <div className="space-y-2 text-text-secondary">
-                    <p><span className="font-medium">Monday - Friday:</span> 9:00 AM - 5:00 PM</p>
-                    <p><span className="font-medium">Saturday:</span> 10:00 AM - 2:00 PM</p>
+                    <p><span className="font-medium">Monday - Friday:</span> 9:00 AM - 5:30 PM</p>
+                    <p><span className="font-medium">Saturday:</span> Closed </p>
                     <p><span className="font-medium">Sunday:</span> Closed</p>
                   </div>
                 </div>

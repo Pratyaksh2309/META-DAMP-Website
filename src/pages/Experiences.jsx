@@ -2,21 +2,15 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SearchBar from '../components/SearchBar'
 import SEO from '../components/SEO'
+import { experiencesData } from '../data/experiences'
 
 const Experiences = () => {
   const [activeFilter, setActiveFilter] = useState('all')
   const [isSearchExpanded, setIsSearchExpanded] = useState(false)
   const [internshipFilter, setInternshipFilter] = useState('all')
 
-  const experiences = [
-    { id: 1, title: 'Google Software Engineering Intern', category: 'internship', type: 'software', company: 'Google', duration: 'Summer 2024', location: 'Bangalore', cpi: '9.2+' },
-    { id: 2, title: 'Microsoft Research Intern', category: 'internship', type: 'research', company: 'Microsoft', duration: 'Summer 2024', location: 'Hyderabad', cpi: '8.5+' },
-    { id: 3, title: 'MIT Graduate Studies', category: 'higher-studies', type: 'masters', company: 'MIT', duration: 'Fall 2024', location: 'Boston, USA', cpi: '9.5+' },
-    { id: 4, title: 'Robotics Project at IIT Bombay', category: 'projects', type: 'research', company: 'IIT Bombay', duration: 'Spring 2024', location: 'Mumbai', cpi: '8.0+' }
-  ]
-
   const getFilteredExperiences = () => {
-    let filtered = experiences
+    let filtered = experiencesData
 
     if (activeFilter !== 'all') {
       filtered = filtered.filter(exp => exp.category === activeFilter)
@@ -32,9 +26,11 @@ const Experiences = () => {
   const getTypeColor = (type) => {
     switch (type) {
       case 'software': return 'bg-primary-blue-100 text-primary-blue-700 border-primary-blue-200'
-      case 'research': return 'bg-neutral-100 text-neutral-700 border-neutral-200'
-      case 'masters': return 'bg-emerald-100 text-emerald-700 border-emerald-200'
+      // case 'research': return 'bg-neutral-100 text-neutral-700 border-neutral-200'
+      // case 'masters': return 'bg-emerald-100 text-emerald-700 border-emerald-200'
       case 'consulting': return 'bg-accent-yellow-100 text-accent-yellow-700 border-accent-yellow-200'
+      case 'finance': return 'bg-purple-100 text-purple-700 border-purple-200'
+      case 'exchange': return 'bg-teal-100 text-teal-700 border-teal-200'
       default: return 'bg-neutral-100 text-neutral-700 border-neutral-200'
     }
   }
@@ -66,7 +62,7 @@ const Experiences = () => {
           {/* Main Filters */}
           {!isSearchExpanded && (
             <div className="flex flex-wrap gap-4 justify-center animate-fade-in transition-all duration-300" style={{ animationDelay: '0.6s' }}>
-              {['all', 'internship', 'higher-studies', 'projects'].map((filter, index) => (
+              {['all', 'internship', 'research', 'semester-exchange'].map((filter, index) => (
                 <button
                   key={filter}
                   onClick={() => {
@@ -81,7 +77,7 @@ const Experiences = () => {
                 >
                   <span className="relative z-10">
                     {filter === 'all' ? 'All Experiences' :
-                      filter === 'higher-studies' ? 'Higher Studies' :
+                      filter === 'semester-exchange' ? 'Semester Exchange' :
                         filter.charAt(0).toUpperCase() + filter.slice(1)}
                   </span>
                   {activeFilter !== filter && (
@@ -96,7 +92,7 @@ const Experiences = () => {
         {/* Internship Sub-filters */}
         {activeFilter === 'internship' && (
           <div className="flex flex-wrap gap-3 mb-12 justify-center animate-fade-in">
-            {['all', 'software', 'research', 'consulting', 'finance'].map((filter, index) => (
+            {['all', 'software', 'consulting', 'finance'].map((filter, index) => (
               <button
                 key={filter}
                 onClick={() => setInternshipFilter(filter)}
@@ -133,19 +129,21 @@ const Experiences = () => {
                 <div className="space-y-4 text-neutral-600 mb-8">
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-primary-blue-500 rounded-full mr-3"></div>
-                    <span className="font-semibold text-neutral-800">Duration:</span>
-                    <span className="ml-2">{experience.duration}</span>
+                    <span className="font-semibold text-neutral-800">Student:</span>
+                    <span className="ml-2">{experience.studentName}</span>
                   </div>
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-accent-yellow-500 rounded-full mr-3"></div>
-                    <span className="font-semibold text-neutral-800">Location:</span>
-                    <span className="ml-2">{experience.location}</span>
+                    <span className="font-semibold text-neutral-800">Duration:</span>
+                    <span className="ml-2">{experience.duration}</span>
                   </div>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-neutral-500 rounded-full mr-3"></div>
-                    <span className="font-semibold text-neutral-800">CPI Required:</span>
-                    <span className="ml-2">{experience.cpi}</span>
-                  </div>
+                  {experience.rating && (
+                    <div className="flex items-center">
+                      <div className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></div>
+                      <span className="font-semibold text-neutral-800">Rating:</span>
+                      <span className="ml-2">{experience.rating}/5</span>
+                    </div>
+                  )}
                 </div>
 
                 <Link to={`/experience/${experience.id}`} className="w-full button-primary group/btn inline-flex items-center justify-center">
