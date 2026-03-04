@@ -62,14 +62,14 @@ const Tracks = () => {
         </div>
 
         {/* Additional Info Section - Dropdown */}
-        <div className="mt-16 glass-card rounded-3xl shadow-xl overflow-hidden mb-16">
+        <div className="mt-8 sm:mt-16 glass-card rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden mb-8 sm:mb-16">
           {/* Dropdown Header */}
           <button
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
-            className="w-full flex items-center justify-between p-8 bg-white/50 backdrop-blur-sm rounded-3xl shadow-xl border border-white/50 group relative overflow-hidden">
-            <h2 className="text-3xl font-bold text-slate-900">How to Use Course Tracks</h2>
+            className="w-full flex items-center justify-between p-4 sm:p-6 md:p-8 bg-white/50 backdrop-blur-sm rounded-2xl sm:rounded-3xl shadow-xl border border-white/50 group relative overflow-hidden">
+            <h2 className="text-lg sm:text-2xl md:text-3xl font-bold text-slate-900 pr-2">How to Use Course Tracks</h2>
             <svg
-              className={`w-8 h-8 text-slate-600 transition-transform duration-300 flex-shrink-0 ${
+              className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-slate-600 transition-transform duration-300 flex-shrink-0 ${
                 isDropdownOpen ? 'rotate-180' : ''
               }`}
               fill="none"
@@ -82,30 +82,30 @@ const Tracks = () => {
 
           {/* Dropdown Content with smooth height transition */}
           <div className={`overflow-hidden transition-all duration-500 ease-in-out ${
-            isDropdownOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+            isDropdownOpen ? 'max-h-[800px] sm:max-h-96 opacity-100' : 'max-h-0 opacity-0'
           }`}>
-            <div className="p-12 bg-white/50">
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div className="p-4 sm:p-8 md:p-12 bg-white/50">
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
                 <div className="text-center stagger-animation" style={{animationDelay: '0.1s'}}>
-                  <div className="w-16 h-16 bg-gradient-to-r from-primary-blue-500 to-primary-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow">
-                    <span className="text-white font-bold text-xl">1</span>
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r from-primary-blue-500 to-primary-blue-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 md:mb-6 shadow-glow">
+                    <span className="text-white font-bold text-lg sm:text-xl">1</span>
                   </div>
-                  <h3 className="font-bold text-neutral-900 mb-3 text-lg">Choose Your Track</h3>
-                  <p className="text-neutral-600">Select a track that aligns with your career goals and interests.</p>
+                  <h3 className="font-bold text-neutral-900 mb-2 sm:mb-3 text-base sm:text-lg">Choose Your Track</h3>
+                  <p className="text-sm sm:text-base text-neutral-600">Select a track that aligns with your career goals and interests.</p>
                 </div>
                 <div className="text-center stagger-animation" style={{animationDelay: '0.2s'}}>
-                  <div className="w-16 h-16 bg-gradient-to-r from-accent-yellow-500 to-accent-yellow-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-glow-yellow">
-                    <span className="text-white font-bold text-xl">2</span>
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r from-accent-yellow-500 to-accent-yellow-600 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 md:mb-6 shadow-glow-yellow">
+                    <span className="text-white font-bold text-lg sm:text-xl">2</span>
                   </div>
-                  <h3 className="font-bold text-neutral-900 mb-3 text-lg">Plan Your Semesters</h3>
-                  <p className="text-neutral-600">Use the course sequence to plan your academic timeline.</p>
+                  <h3 className="font-bold text-neutral-900 mb-2 sm:mb-3 text-base sm:text-lg">Plan Your Semesters</h3>
+                  <p className="text-sm sm:text-base text-neutral-600">Use the course sequence to plan your academic timeline.</p>
                 </div>
                 <div className="text-center stagger-animation" style={{animationDelay: '0.3s'}}>
-                  <div className="w-16 h-16 bg-gradient-to-r from-neutral-600 to-neutral-700 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-lg">
-                    <span className="text-white font-bold text-xl">3</span>
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 bg-gradient-to-r from-neutral-600 to-neutral-700 rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-3 sm:mb-4 md:mb-6 shadow-lg">
+                    <span className="text-white font-bold text-lg sm:text-xl">3</span>
                   </div>
-                  <h3 className="font-bold text-neutral-900 mb-3 text-lg">Get Guidance</h3>
-                  <p className="text-neutral-600">Consult with seniors and faculty for personalized advice.</p>
+                  <h3 className="font-bold text-neutral-900 mb-2 sm:mb-3 text-base sm:text-lg">Get Guidance</h3>
+                  <p className="text-sm sm:text-base text-neutral-600">Consult with seniors and faculty for personalized advice.</p>
                 </div>
               </div>
             </div>

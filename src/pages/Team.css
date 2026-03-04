@@ -34,22 +34,39 @@
 
 @media (max-width: 640px) {
   .team-grid {
-    gap: 1rem;
+    gap: 1.5rem;
     justify-content: center;
-    padding: 0 1rem;
+    padding: 0 0.5rem;
   }
   
   .team-card {
     flex: 0 0 auto;
-    width: calc(100vw - 2rem);
-    max-width: 320px;
+    width: 75%;
+    max-width: 240px;
+    min-width: 200px;
     margin: 0 auto;
   }
   
   .team-card .pc-card {
     height: auto !important;
-    max-height: none !important;
-    aspect-ratio: 0.75 !important;
+    max-height: 300px !important;
+    aspect-ratio: 0.7 !important;
+  }
+  
+  .team-card .pc-card-wrapper {
+    touch-action: pan-y !important;
+  }
+  
+  .team-card .pc-info-below {
+    font-size: 0.85rem;
+  }
+  
+  .team-card .pc-name {
+    font-size: 1rem !important;
+  }
+  
+  .team-card .pc-career-text {
+    font-size: 0.75rem !important;
   }
 }
 
