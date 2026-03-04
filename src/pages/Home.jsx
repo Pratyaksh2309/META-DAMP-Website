@@ -146,58 +146,96 @@ const Home = () => {
       </section> */}
 
       {/* Announcements Section */}
-      <section className="py-16 sm:py-24 bg-white relative overflow-hidden">
+      <section className="py-16 sm:py-24 bg-gradient-to-br from-white to-neutral-50 relative overflow-hidden">
         {/* Animated Background */}
         <div className="absolute inset-0 opacity-5">
           <div className="absolute inset-0" style={{backgroundImage: 'radial-gradient(circle at 25% 25%, #3b82f6 0%, transparent 50%), radial-gradient(circle at 75% 75%, #f59e0b 0%, transparent 50%)'}}></div>
         </div>
         
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="text-center mb-12 sm:mb-20">
-            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold gradient-text-blue mb-4 sm:mb-6">Latest Announcements</h2>
-            <p className="text-lg sm:text-xl text-neutral-600 max-w-2xl mx-auto px-4">Stay updated with the latest news and updates</p>
+          <div className="text-center mb-12 sm:mb-16">
+            <div className="inline-flex items-center px-4 py-2 bg-primary-blue-100 rounded-full mb-4">
+              <span className="w-2 h-2 bg-primary-blue-600 rounded-full mr-2 pulse-glow"></span>
+              <span className="text-sm font-semibold text-primary-blue-700 uppercase tracking-wide">Latest Updates</span>
+            </div>
+            <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold gradient-text-blue mb-4 sm:mb-6">What's New</h2>
+            <p className="text-lg sm:text-xl text-neutral-600 max-w-2xl mx-auto px-4">Stay informed with recent additions and improvements to the platform</p>
           </div>
           
-          <div className="space-y-6 sm:space-y-8">
-            <div className="stagger-animation glass-card-blue rounded-3xl shadow-xl p-6 sm:p-10 card-hover group" style={{animationDelay: '0.1s'}}>
-              <div className="flex flex-col sm:flex-row items-start">
-                <div className="flex-shrink-0 mb-4 sm:mb-0">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-primary-blue-500 to-primary-blue-600 rounded-3xl flex items-center justify-center shadow-glow group-hover:scale-110 group-hover:shadow-glow-yellow transition-all duration-300">
-                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z"></path>
-                    </svg>
-                  </div>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-8 max-w-6xl mx-auto">
+            {/* Course Reviews & Tracks Update */}
+            <div className="stagger-animation glass-card rounded-3xl shadow-xl p-6 sm:p-8 card-hover border-l-4 border-primary-blue-500 group" style={{animationDelay: '0.1s'}}>
+              <div className="flex items-start mb-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-primary-blue-500 to-primary-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                  </svg>
                 </div>
-                <div className="sm:ml-6 lg:ml-8">
-                  <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 mb-2 sm:mb-3">New Course Reviews Added</h3>
-                  <p className="text-neutral-600 mb-3 sm:mb-4 leading-relaxed text-base sm:text-lg">We've added comprehensive reviews for ME 101, ME 102, and several elective courses. Check them out!</p>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-primary-blue-500 rounded-full mr-3 pulse-glow"></div>
-                    <p className="text-sm text-primary-blue-600 font-semibold">Posted 2 days ago</p>
+                <div className="ml-4 flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="inline-block px-3 py-1 bg-green-100 text-green-700 text-xs font-bold rounded-full">NEW</span>
+                    <span className="text-xs text-neutral-500 font-medium">March 4, 2026</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 mb-3">Course Reviews & Academic Tracks Now Available</h3>
+                  <p className="text-neutral-600 leading-relaxed mb-4">
+                    We're excited to announce the addition of <span className="font-semibold text-neutral-800"> comprehensive course reviews</span> covering core courses, department electives, and cross-department offerings.
+                  </p>
+                  <p className="text-neutral-600 leading-relaxed mb-4">
+                    Additionally, we've launched interactive <span className="font-semibold text-neutral-800">course track visualizations</span> to help you navigate popular academic paths including Data Science minor requirements, specialized MEMS tracks, and strategic elective combinations for semester planning.
+                  </p>
+                  <div className="flex gap-3 pt-3 border-t border-neutral-200">
+                    <Link to="/courses" className="inline-flex items-center text-primary-blue-600 hover:text-primary-blue-700 font-semibold text-sm group/link">
+                      Browse Course Reviews
+                      <svg className="w-4 h-4 ml-1 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </Link>
+                    <Link to="/tracks" className="inline-flex items-center text-primary-blue-600 hover:text-primary-blue-700 font-semibold text-sm group/link">
+                      Explore Tracks
+                      <svg className="w-4 h-4 ml-1 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
 
-            <div className="stagger-animation glass-card-yellow rounded-3xl shadow-xl p-6 sm:p-10 card-hover group" style={{animationDelay: '0.2s'}}>
-              <div className="flex flex-col sm:flex-row items-start">
-                <div className="flex-shrink-0 mb-4 sm:mb-0">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-accent-yellow-500 to-accent-yellow-600 rounded-3xl flex items-center justify-center shadow-glow-yellow group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">
-                    <svg className="w-6 h-6 sm:w-8 sm:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
-                    </svg>
-                  </div>
+            {/* Experiences & Initiatives Update */}
+            <div className="stagger-animation glass-card rounded-3xl shadow-xl p-6 sm:p-8 card-hover border-l-4 border-accent-yellow-500 group" style={{animationDelay: '0.2s'}}>
+              <div className="flex items-start mb-4">
+                <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-accent-yellow-500 to-accent-yellow-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:scale-110 transition-all duration-300">
+                  <svg className="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2-2v2m8 0V6a2 2 0 012 2v6a2 2 0 01-2 2H8a2 2 0 01-2-2V8a2 2 0 012-2V6"></path>
+                  </svg>
                 </div>
-                <div className="sm:ml-6 lg:ml-8">
-                  <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 mb-2 sm:mb-3">Internship Season Updates</h3>
-                  <p className="text-neutral-600 mb-3 sm:mb-4 leading-relaxed text-base sm:text-lg">New internship experiences from summer 2024 have been added. Learn from your seniors' experiences!</p>
-                  <div className="flex items-center">
-                    <div className="w-2 h-2 bg-accent-yellow-500 rounded-full mr-3 pulse-glow-yellow"></div>
-                    <p className="text-sm text-accent-yellow-700 font-semibold">Posted 1 week ago</p>
+                <div className="ml-4 flex-1">
+                  <div className="flex items-center gap-2 mb-2">
+                    <span className="inline-block px-3 py-1 bg-blue-100 text-blue-700 text-xs font-bold rounded-full">UPDATED</span>
+                    <span className="text-xs text-neutral-500 font-medium">March 4, 2026</span>
+                  </div>
+                  <h3 className="text-xl sm:text-2xl font-bold text-neutral-900 mb-3">Internship Experiences & Department Initiatives</h3>
+                  <p className="text-neutral-600 leading-relaxed mb-4">
+                    Discover authentic stories from your seniors who've completed summer internships across <span className="font-semibold text-neutral-800">core engineering, consulting, data analytics, research labs, and finance sectors</span>.
+                  </p>
+                  <p className="text-neutral-600 leading-relaxed mb-4">
+      
+                    Our experience section now features detailed accounts of application processes, interview preparation tips, technical assessments, and real-world project work to help you make informed career decisions.
+                  </p>
+
+                  <div className="flex gap-3 pt-3 border-t border-neutral-200">
+                    <Link to="/experiences" className="inline-flex items-center text-accent-yellow-700 hover:text-accent-yellow-800 font-semibold text-sm group/link">
+                      Read Experiences
+                      <svg className="w-4 h-4 ml-1 group-hover/link:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 5l7 7-7 7"></path>
+                      </svg>
+                    </Link>
+                    
                   </div>
                 </div>
               </div>
             </div>
+        
           </div>
         </div>
       </section>

@@ -2,20 +2,13 @@ import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import SearchBar from '../components/SearchBar'
 import SEO from '../components/SEO'
+import { coursesData } from '../data/courses'
 
 const Courses = () => {
   const [activeFilter, setActiveFilter] = useState('all')
   const [isSearchExpanded, setIsSearchExpanded] = useState(false)
 
-
-  const courses = [
-    { id: 1, code: 'ME 101', name: 'Engineering Mechanics', category: 'core', difficulty: 'medium', credits: 3, semester: '1st Year, 1st Sem' },
-    { id: 2, code: 'ME 102', name: 'Engineering Graphics', category: 'core', difficulty: 'easy', credits: 3, semester: '1st Year, 1st Sem' },
-    { id: 3, code: 'ME 201', name: 'Thermodynamics', category: 'core', difficulty: 'hard', credits: 4, semester: '2nd Year, 1st Sem' },
-    { id: 4, code: 'CS 101', name: 'Computer Programming', category: 'elective', difficulty: 'medium', credits: 3, semester: '1st Year, 2nd Sem' }
-  ]
-
-  const filteredCourses = activeFilter === 'all' ? courses : courses.filter(course => course.category === activeFilter)
+  const filteredCourses = activeFilter === 'all' ? coursesData : coursesData.filter(course => course.category === activeFilter)
 
   const getDifficultyColor = (difficulty) => {
     switch (difficulty) {
@@ -53,7 +46,7 @@ const Courses = () => {
           {/* Filters */}
           {!isSearchExpanded && (
             <div className="flex flex-wrap gap-4 justify-center animate-fade-in transition-all duration-300" style={{animationDelay: '0.6s'}}>
-              {['all', 'core', 'elective', 'minor'].map((filter, index) => (
+              {['all', 'core', 'elective', 'hasmed'].map((filter, index) => (
                 <button
                   key={filter}
                   onClick={() => setActiveFilter(filter)}
@@ -93,11 +86,11 @@ const Courses = () => {
                 </div>
                 
                 <div className="space-y-4 text-slate-600 mb-8">
-                  <div className="flex items-center">
+                  {/* <div className="flex items-center">
                     <div className="w-2 h-2 bg-blue-500 rounded-full mr-3"></div>
                     <span className="font-semibold text-slate-800">Credits:</span>
                     <span className="ml-2">{course.credits}</span>
-                  </div>
+                  </div> */}
                   <div className="flex items-center">
                     <div className="w-2 h-2 bg-indigo-500 rounded-full mr-3"></div>
                     <span className="font-semibold text-slate-800">Semester:</span>
