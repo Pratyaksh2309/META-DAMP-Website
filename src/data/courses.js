@@ -814,6 +814,72 @@ export const coursesData = [
     ],
     grading: '80/108 got AA. Attendance >90% + timely submission = AA',
     tags: ['hasmed', 'design', 'hands-on', 'easy', 'highly-recommended']
+  },
+  {
+    id: 'mm324',
+    code: 'MM324',
+    name: 'Polymer Science and Engineering',
+    category: 'core',
+    difficulty: 'hard',
+    credits: null,
+    semester: '2025 Spring',
+    professor: 'Prof. Mithun Chowdhary',
+    rating: 4,
+    totalReviews: 1,
+    description: 'Core course covering polymer physics, thermodynamics, and mechanics. Math intensive and theory heavy - learn polymers from a physics perspective.',
+    prerequisites: ['None'],
+    topics: [
+      'History and classification of polymers',
+      'Natural, biological and synthetic polymers',
+      'Molecular weight and polydispersity index',
+      'Polymer synthesis (addition, free radical, anionic, click chemistry)',
+      'Chain conformation and statistical descriptions',
+      'Random walks and characteristic length scales',
+      'Size-exclusion and gel permeation chromatography',
+      'Flory-Huggins theory',
+      'Polymer thermodynamics and phase separation',
+      'Block copolymers and polymer blends',
+      'Polymer structure (glassy, crystalline, rubbery states)',
+      'Polymer crystallization and Lauritzen-Hoffman theory',
+      'Solution dynamics and hydrodynamic size',
+      'Viscoelasticity and rheology',
+      'Time-temperature superposition and reptation',
+      'Optical and electrical properties',
+      'Biopolymers and soft materials'
+    ],
+    reviews: [
+      {
+        id: 1,
+        author: 'Debashish Das',
+        year: '4th (Batch of \'26)',
+        semester: '2025 Spring',
+        rating: 4,
+        content: 'Great course! and my first AP :D In general a good course, its very math intensive, theory and derivation heavy. If you want to learn how does a polymer move, what does their thermodynamics look like and stuff like that and also to learn polymers from a physics POV that is generally learn from a chemistry POV then you should take this up.',
+        whyTakeCourse: 'Core course. Good for learning polymers from physics perspective - covers polymer movement, thermodynamics, and fundamental physics instead of typical chemistry approach.',
+        attendance: '5% for attendance',
+        teachingStyle: 'Prof Mithun has an unorthodox teaching style, it isnt linear, he might tell what comes at the end of a topic first and then explain how to reach it, paying attention in classes is important and at the same time making sure that you understand the previously covered content is important',
+        assignments: 'No projects, Assignments were given for practice',
+        grading: 'Relative, quizzes - 25%, midsem - 30%, endsem - 35%',
+        examPattern: 'Theory and derivation based, generally students should focus on remembering the derivations and also being conceptually clear about stuff',
+        slidesQuality: 4,
+        resources: ['Student notes on Drive'],
+        pros: ['Good conceptual course', 'Physics-oriented polymer understanding', 'Practice assignments given'],
+        cons: ['Very math intensive', 'Derivation heavy', 'Unorthodox teaching style needs adaptation']
+      }
+    ],
+    tips: [
+      'Pay close attention in class - teaching style is non-linear',
+      'Keep reviewing previously covered content regularly',
+      'Focus on understanding and remembering derivations',
+      'Build strong conceptual clarity alongside theory',
+      'Complete practice assignments thoroughly',
+      'Math-heavy course - be prepared for extensive calculations'
+    ],
+    resources: [
+      { name: 'Student Notes', link: 'https://drive.google.com/drive/folders/1GmGyrMwiDGr4hnLKBLu2GolKBmQTyzBo?usp=drive_link', type: 'notes' }
+    ],
+    grading: 'Relative - Quizzes: 25%, Midsem: 30%, Endsem: 35%, Attendance: 5%',
+    tags: ['materials', 'core', 'polymers', 'theory-heavy', 'math-intensive']
   }
 ]
 

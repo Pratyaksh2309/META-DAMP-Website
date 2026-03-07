@@ -17,7 +17,7 @@ const Home = () => {
       <LandingPage />
 
       {/* Featured Section */}
-      <section className="py-16 sm:py-24 bg-gradient-to-br from-neutral-50 to-primary-blue-50 relative">
+      <section className="sm:py-10 bg-gradient-to-br from-neutral-50 to-primary-blue-50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12 sm:mb-20">
             <h2 className="text-4xl sm:text-5xl md:text-6xl font-bold gradient-text-blue mb-4 sm:mb-6">Featured Content</h2>

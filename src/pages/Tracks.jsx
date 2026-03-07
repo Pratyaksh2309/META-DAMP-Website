@@ -57,8 +57,7 @@ const Tracks = () => {
         <div className="text-center mb-12 sm:mb-20">
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold gradient-text-blue mb-6 sm:mb-8 animate-slide-up">Course Tracks</h1>
           <p className="text-lg sm:text-xl text-neutral-600 max-w-4xl mx-auto leading-relaxed animate-fade-in px-4" style={{animationDelay: '0.3s'}}>
-            Visual guides for popular course combinations and academic pathways to help you plan your MEMS journey.
-          </p>
+             Visual guides for popular course combinations and academic pathways to help you plan your academic journey.         </p>
         </div>
 
         {/* Additional Info Section - Dropdown */}
