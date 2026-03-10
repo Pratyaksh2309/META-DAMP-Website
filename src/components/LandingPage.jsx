@@ -77,8 +77,8 @@ function LandingPage() {
                                 className="max-w-4xl mx-auto"
                             >
                                 <p className="text-sm sm:text-md md:text-lg lg:text-xl xl:text-2xl text-black/90 leading-relaxed mb-8 px-4">
-                                    Your comprehensive guide to courses, internship & research experiences, and academic pathways at IIT Bombay. Discover insights from seniors and plan your academic journey.         </p>
-                                
+                                    This website has been created by the MEMS DAMP team to guide students through academics at IIT Bombay. Browse the sections for insights on courses, internships, and academic pathways shared by seniors.
+                                </p>            
                                 {/* CTA Buttons */}
                                 <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
                                     <motion.div
